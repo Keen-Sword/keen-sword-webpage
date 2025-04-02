@@ -90,9 +90,6 @@ li {
     margin-left: 16px;
     list-style-type: disc;
 }
-li:hover {
-    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
-}
 
 .container { 
     display: grid; 
@@ -123,6 +120,11 @@ li:hover {
 .topbar-selector-item {
     margin-right: 32px;
     list-style-type: none;
+    color: var(--color-bg) !important;
+    padding: 4px;
+}
+.topbar-selector-item:hover {
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
 
 .error-container {
