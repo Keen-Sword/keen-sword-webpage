@@ -8,7 +8,7 @@ function main() {
     } else {
         topbar.setHTMLUnsafe( 
         '<h1>Project Keen Sword</h1>' +
-        '<ul class="topbar-selector>' +
+        '<ul class="topbar-selector">' +
         '    <li class="topbar-selector-item"><a href="/">Home</a></li>' +
         '    <li class="topbar-selector-item"><a href="/blog">Blog</a></li>' +
         '    <li class="topbar-selector-item"><a href="/gallery">Gallery</a></li>' +
