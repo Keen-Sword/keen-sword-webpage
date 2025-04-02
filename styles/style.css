@@ -11,7 +11,6 @@
 body {
     background-color: var(--col-bg);
     color: var(--col-fg);
-    font-size: 16px;
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -31,14 +30,38 @@ body {
 }
 
 h1 {
+    font-size: 2.25em;
+    margin: 8px;
     text-align: center;
-    margin-top: 0px;
 }
 h1:hover {
     animation: colorRotate 1s ease-in;
     animation-fill-mode: forwards;
 }
-
+h2 {
+    font-size: 1.75em;
+    margin: 8px;
+}
+h3 {
+    font-size: 1.5em;
+    margin: 6px;
+}
+h4 {
+    font-size: 1.25em;
+    margin: 4px;
+}
+h5 {
+    font-size: 1.17em;
+    margin: 4px;
+}
+h6 {
+    font-size: 1em;
+    margin: 4px;
+}
+p {
+    font-size: 1em;
+    margin: 2px;
+}
 a {
     color: var(--blue-dark);
     text-decoration: none;
@@ -67,7 +90,7 @@ li {
     margin-left: 16px;
     list-style-type: disc;
 }
-li:hover{
+li:hover {
     box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
 
@@ -79,7 +102,7 @@ li:hover{
 }
 .topbar { 
     background-color: var(--col-bg-2); 
-    padding: 20px; 
+    padding: 16px; 
     position: sticky;
     display: grid;
     justify-content: space-evenly;
@@ -89,7 +112,7 @@ li:hover{
     border-color: var(--col-accent-1);
 }
 .content { 
-    padding: 20px;
+    padding: 16px;
     padding-left: 15vw;
     padding-right: 15vw;
 }
@@ -100,4 +123,10 @@ li:hover{
 .topbar-selector-item {
     margin-right: 32px;
     list-style-type: none;
+}
+
+.error-container {
+    align-items: center;
+    display: grid;
+    text-align: center;
 }
