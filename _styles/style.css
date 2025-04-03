@@ -1,0 +1,221 @@
+:root {
+    --col-bg: #f4f0e8;
+    --col-bg-2: #dedad2;
+    --col-fg: #111111;
+    --col-accent-1: #008080;
+    --col-accent-2: #03c4c4;
+    --blue-dark: #26A;
+    --blue-light: #4DE;
+}
+
+body {
+    background-color: var(--col-bg);
+    color: var(--col-fg);
+    font-family: Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.shadow {
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 2.25em;
+    margin: 16px 8px 8px 0px;
+    text-align: center;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
+    color: var(--col-accent-1);
+}
+h1:hover {
+    transform: scale(1.05);
+    color: var(--col-accent-2);
+}
+h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--col-accent-1);
+    transition: transform 0.5s;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+h1:hover::after {
+    transform: scaleX(1);
+}
+
+h2 {
+    font-size: 1.75em;
+    margin: 16px 8px 8px 0px;
+}
+h3 {
+    font-size: 1.5em;
+    margin: 12px 6px 6px 0px;
+}
+h4 {
+    font-size: 1.25em;
+    margin: 8px 4px 4px 0px;
+}
+h5 {
+    font-size: 1.17em;
+    margin: 6px 4px 4px 0px;
+}
+h6 {
+    font-size: 1em;
+    margin: 4px 4px 4px 0px;
+}
+p {
+    font-size: 1em;
+    margin: 2px 2px 2px 0px;
+}
+a {
+    color: var(--blue-dark);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--blue-light);
+}
+a:visited {
+    font-style: italic;
+}
+
+code {
+    background-color: var(--color-bg);
+    color: var(--white);
+    font-family: Roboto-Mono, monospace;
+    white-space: pre;
+    display: inline-block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+li {
+    margin-left: 16px;
+    list-style-type: disc;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+th {
+    border: 1px solid var(--col-fg);
+    background-color: var(--col-bg-2);
+}
+td {
+    border: 1px solid var(--col-fg);
+}
+
+.container { 
+    display: grid; 
+    grid-template-columns: 250px 1fr; 
+    grid-template-rows: 120px 1fr; 
+    height: 100vh; 
+}
+
+.error-container {
+    align-items: center;
+    display: grid;
+    text-align: center;
+}
+
+.topbar { 
+    background-color: var(--col-bg-2); 
+    padding: 16px; 
+    position: sticky;
+    display: grid;
+    justify-content: space-evenly;
+    border: 0px;
+    border-bottom: 8px;
+    border-style: ridge;
+    border-color: var(--col-accent-1);
+}
+.topbar-selector {
+    display: flex;
+}
+.topbar-selector-item {
+    margin-right: 32px;
+    list-style-type: none;
+    padding: 4px;
+}
+.topbar-selector-item-link {
+    color: var(--color-bg) !important;
+}
+
+.topbar {
+    border: 0px;
+    border-bottom: 8px;
+    border-style: ridge;
+    border-color: var(--col-accent-1);
+}
+.topbar-selector-item:hover {
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
+}
+
+.avatar-image {
+    width: 95%;
+    padding: 2.5%;
+}
+
+@media (orientation: landscape)  {
+    .topbar { 
+        background-color: var(--col-bg-2); 
+        padding: 16px; 
+        position: sticky;
+        display: grid;
+        justify-content: space-evenly;
+    }
+    .topbar-selector {
+        display: flex;
+    }
+    .topbar-selector-item {
+        margin-right: 32px;
+        list-style-type: none;
+        color: var(--color-bg) !important;
+        padding: 4px;
+    }
+
+    .content { 
+        padding: 16px;
+        padding-left: 15vw;
+        padding-right: 15vw;
+    }
+
+    .split-container {
+        display: flex;
+    }
+    .split-container > :first-child {
+        width: auto;
+        margin-right: 16px;
+    }
+}
+@media (orientation: portrait) {
+    .topbar-selector {
+        display: block;
+    }
+    .topbar-selector-item {
+        margin-right: 32px;
+        list-style-type: disclosure-closed;
+        padding: 4px;
+    }
+
+    .content { 
+        padding: 16px;
+        padding-left: 2vw;
+        padding-right: 5vw;
+    }
+
+    .split-container > :first-child {
+        margin-bottom: 16px;
+    }
+}
