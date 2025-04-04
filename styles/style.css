@@ -180,6 +180,10 @@ td {
     background: none;
 }
 
+.home-page-quicklinks {
+    list-style-type: disclosure-closed
+}
+
 @media (orientation: landscape)  {
     table {
         width: 15vw;
