@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,-25&icon_names=dark_mode,light_mode,open_in_new");
+
 :root {
     --col-bg: #f4f0e8;
     --col-bg-2: #dedad2;
@@ -15,6 +17,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .shadow {
@@ -23,7 +26,7 @@ body {
 
 h1 {
     font-size: 2.25em;
-    margin: 16px 8px 8px 0px;
+    margin: 0px;
     text-align: center;
     position: relative;
     transition: color 0.3s, transform 0.3s;
@@ -104,7 +107,6 @@ li {
 
 table {
     table-layout: fixed;
-    width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
@@ -167,7 +169,22 @@ td {
     padding: 2.5%;
 }
 
+.material-symbols-outlined {
+    font-size: 0.75em;
+    color: var(--col-fg);
+}
+
+.mode-change-button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
 @media (orientation: landscape)  {
+    table {
+        width: 15vw;
+    }
+
     .topbar { 
         background-color: var(--col-bg-2); 
         padding: 16px; 
@@ -177,11 +194,12 @@ td {
     }
     .topbar-selector {
         display: flex;
+        padding-left: 0px;
     }
     .topbar-selector-item {
         margin-right: 32px;
         list-style-type: none;
-        color: var(--color-bg) !important;
+        color: var(--color-bg);
         padding: 4px;
     }
 
@@ -200,6 +218,11 @@ td {
     }
 }
 @media (orientation: portrait) {
+    table {
+        margin-left: 5vw;
+        margin-right: 3vw;
+    }
+
     .topbar-selector {
         display: block;
     }
