@@ -48,10 +48,14 @@ function toggleDarkMode() {
 function main() {
     console.log("Loading common HTML elements")
     loadCommonHTML();
-    
+
     console.log("Toggeling Dark Mode")
     if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.style.transition = "none";
         setDarkMode(true);
+        setTimeout(() => {
+            document.body.style.transition = "background-color 0.4s ease, color 0.4s ease";
+        }, 50);
     }
 }
 
