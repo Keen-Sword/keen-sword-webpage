@@ -13,12 +13,15 @@ RUNNING = True
 #          Do not use it please :3          #
 #############################################
 
-def serve_file(fp: str) -> bytes | None:
+def serve_file(fp: str, error: bool=False) -> bytes | None:
     content_type, _ = mimetypes.guess_type(fp)
 
     if os.path.isfile(fp):
         with open(fp, "rb") as f:
             body = f.read()
+        
+        if error:
+            return f"HTTP/1.1 404 Not Found\r\nContent-Type: {content_type}\r\n\r\n".encode() + body
         return f"HTTP/1.1 200 OK\r\nContent-Type: {content_type}\r\n\r\n".encode() + body
     else:
         return None
@@ -33,8 +36,23 @@ def handle_get_requests(path: str) -> bytes:
     if path == "":
         return serve_file("index.html") # type: ignore
     if response == None:
-        return serve_file("404.html") # type: ignore
+        return serve_file("404.html", True) # type: ignore
     return response 
+
+def handle_head_requests(path: str) -> bytes:
+    file_path = os.path.join('./', path)
+
+    if not os.path.splitext(path)[1]:
+        file_path += ".html"
+    if path == "":
+        file_path = "index.html"
+    if not os.path.exists(file_path):
+        file_path = "404.html"
+        if not os.path.exists(file_path):
+            return b"HTTP/1.1 404 Not Found\r\nContent-Length: 0\r\n\r\n"
+
+    size = os.path.getsize(file_path)
+    return f"HTTP/1.1 200 OK\r\nContent-Length: {size}\r\n\r\n".encode()
 
 def handle_request(request: str) -> bytes:
     try:
@@ -45,6 +63,8 @@ def handle_request(request: str) -> bytes:
         print(f"Serving: {' '.join(lines[0:3])}")
 
         if method == "GET":
+            return handle_get_requests(path)
+        if method == "HEAD":
             return handle_get_requests(path)
         else:
             return f"HTTP/1.1 405 Method Not Allowed\r\nContent-Type: text/plain".encode()

@@ -8,6 +8,7 @@
     --col-accent-2: #03c4c4;
     --blue-dark: #26A;
     --blue-light: #4DE;
+    --red-dark: #A23;
 }
 
 body {
@@ -30,11 +31,12 @@ h1 {
     text-align: center;
     position: relative;
     transition: color 0.3s, transform 0.3s;
-    color: var(--col-accent-1);
+    color: var(--col-accent-1) !important;
+    cursor: pointer;
 }
 h1:hover {
     transform: scale(1.05);
-    color: var(--col-accent-2);
+    color: var(--col-accent-2) !important;
 }
 h1::after {
     content: '';
@@ -82,11 +84,16 @@ a {
 }
 a:hover {
     color: var(--blue-light);
+    cursor: pointer;
 }
 a:visited {
     font-style: italic;
 }
-
+a.broken-link {
+    color: var(--red-dark);
+    text-decoration: underline wavy var(--red-dark);
+  }
+  
 code {
     background-color: var(--color-bg);
     color: var(--white);
@@ -153,18 +160,20 @@ td {
 .topbar-selector-item-link {
     color: var(--color-bg) !important;
 }
-
-.topbar {
-    border: 0px;
-    border-bottom: 8px;
-    border-style: ridge;
-    border-color: var(--col-accent-1);
-}
 .topbar-selector-item:hover {
     box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
+.footer {
+    position: fixed; 
+    bottom:0;
+    right:1vw;
+}
 
 .avatar-image {
+    width: 95%;
+    padding: 2.5%;
+}
+.flag-image {
     width: 95%;
     padding: 2.5%;
 }

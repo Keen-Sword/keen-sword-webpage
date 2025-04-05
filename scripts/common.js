@@ -6,7 +6,7 @@ function loadCommonHTML() {
         console.warn("Could not find the topbar!")
     } else {
         topbar.setHTMLUnsafe( 
-        '<h1><a href="/">Project Keen Sword</a></h1>' +
+        '<h1 onclick="goHome()">Project Keen Sword</h1>' +
         '<ul class="topbar-selector">' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/">Home</a></li>' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/blog">Blog</a></li>' +
@@ -38,18 +38,43 @@ function setDarkMode(enable) {
     }
 }
 
+// Broken Links
+function highlightBrokenLinks() {
+    document.querySelectorAll("a").forEach(link => {
+        const linkUrl = new URL(link.href, location.href);
+
+        if (linkUrl.origin !== location.origin) 
+            return;
+    
+        fetch(link.href, { method: "HEAD" })
+            .then(res => {
+                if (!res.ok) 
+                    link.classList.add("broken-link");
+            })
+            .catch(() => {
+                link.classList.add("broken-link");
+            });
+    });
+}
+
+// Button Stuff
 function toggleDarkMode() {
     const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
     setDarkMode(!isDarkMode);
 }
-
+function goBack() {
+    history.back();
+}
+function goHome() {
+    window.location.assign("https://keen-sword.net");
+}
 
 // Main
 function main() {
-    console.log("Loading common HTML elements")
+    console.log("Loading common HTML elements..");
     loadCommonHTML();
 
-    console.log("Toggeling Dark Mode")
+    console.log("Toggeling Dark Mode..");
     if (localStorage.getItem('darkMode') === 'enabled') {
         document.body.style.transition = "none";
         setDarkMode(true);
@@ -57,6 +82,9 @@ function main() {
             document.body.style.transition = "background-color 0.4s ease, color 0.4s ease";
         }, 50);
     }
+
+    console.log("Highlighting broken links..");
+    highlightBrokenLinks();
 }
 
 
