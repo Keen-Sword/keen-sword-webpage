@@ -6,7 +6,7 @@ function loadCommonHTML() {
         console.warn("Could not find the topbar!")
     } else {
         topbar.setHTMLUnsafe( 
-        '<h1>Project Keen Sword</h1>' +
+        '<h1><a href="/">Project Keen Sword</a></h1>' +
         '<ul class="topbar-selector">' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/">Home</a></li>' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/blog">Blog</a></li>' +
