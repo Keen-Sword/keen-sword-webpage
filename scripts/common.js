@@ -41,8 +41,10 @@ function setDarkMode(enable) {
 // Broken Links
 function highlightBrokenLinks() {
     document.querySelectorAll("a").forEach(link => {
-        const linkUrl = new URL(link.href, location.href);
+        if (!link.href)
+            return;
 
+        const linkUrl = new URL(link.href, location.href);
         if (linkUrl.origin !== location.origin) 
             return;
     
