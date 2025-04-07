@@ -7,7 +7,7 @@ function loadCommonHTML() {
     } else {
         topbar.setHTMLUnsafe( 
         '<h1 onclick="goHome()">Project Keen Sword</h1>' +
-        '<ul class="topbar-selector">' +
+        '<menu class="topbar-selector">' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/">Home</a></li>' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/blog">Blog</a></li>' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/gallery">Gallery</a></li>' +
@@ -15,7 +15,7 @@ function loadCommonHTML() {
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/characters">Characters</a></li>' +
         '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/nations">Nations</a></li>' +
         `    <div><button class="mode-change-button" onclick="toggleDarkMode()"><span id="darkModeButton" class="material-symbols-outlined" style="font-size: 1.75em">dark_mode</span></button></div>` +
-        '</ul>');
+        '</menu>');
     }
 }
 

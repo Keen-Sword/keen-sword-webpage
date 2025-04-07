@@ -15,3 +15,7 @@ Allow: /
 
 User-agent: YandexBot
 Allow: /
+
+User-agent: ia_archiver
+Disallow: /contact
+Allow: /
