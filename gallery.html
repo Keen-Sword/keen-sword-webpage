@@ -13,13 +13,102 @@
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <script src="/scripts/common.js"></script>
+    <script src="/scripts/gallery.js"></script>
 </head>
 <body>
     <div id="topbar" class="topbar shadow"></div>
     <main id="content" class="content">
-        <div class="error-container">
-            <p>This Page is Work In Progress.</p>
-            <p><a onclick="goBack()">Go Back</a></p>
+        <article class="gallery">
+            <input type="text" id="search-input" placeholder="Search the gallery..." />
+
+            <p>This is a complete, chronologically ordered list of all official artwork released for Keen Sword. Each piece is accompanied by a caption and the name of the artist. You can use the search bar to easily navigate and find specific artworks. You can search for multiple keywords by seperating them with a <code>;</code> character.</p>
+            
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_cosplay_maya_as_izumo.png" data-keywords="Maya, Izumo, Cosplay" alt="Maya cosplaying as Izumo">
+                <p>Maya cosplaying as Izumo by <i>Fiiral</i> - (12 Apr 2025)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_cosplay_izumo_as_maya.png" data-keywords="Maya, Izumo, Cosplay"  alt="Izumo cosplaying as Maya">
+                <p>Maya cosplaying as Izumo by <i>Fiiral</i> - (11 Apr 2025)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_hanami_2025.png" data-keywords="Maya, Izumo, Kaga, Haguro, Collab, Kimono" alt="Hanami 2025 Collab">
+                <p>Hanami 2025 by <i>Faxeon and Fiiral</i> - (01 Apr 2025)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_dontcallmefrisco.jpg" data-keywords="San Francisco" alt="San Francisco Reveal Image">
+                <p>Shipgirl: San Francisco (Don't Call Me Frisco) by <i>Faxeon</i> - (26 Feb 2025)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_shipgirl_lhasa.png" data-keywords="Lhasa" alt="Lhasa Reveal Image">
+                <p>Shipgirl: Lhasa by <i>Fiiral</i> - (04 Jan 2024)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_shipgirl_kaga.png" data-keywords="Kaga" alt="Kaga Reveal Image">
+                <p>Shipgirl: Kaga by <i>Faxeon</i> - (14 Oct 2024)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_shipgirl_maya_and_haguro.png" data-keywords="Maya, Haguro" alt="Maya and Haguro Reveal Image">
+                <p>Shipgirls: Maya and Haguro by <i>Fiiral</i> - (14 Oct 2024)</p>
+                <p><i><b>Edited!</b> The background of this image was edited</i></p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_f35_snuggles.png" data-keywords="Izumo" alt="Izumo snuggling an F35">
+                <p>F35 Snuggles by <i>Faxeon</i> - (22 Aug 2024)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_shipgirl_izumo.png" data-keywords="Izumo, First" alt="Izumo Reveal Image">
+                <p>Shipgirl: Izumo by <i>Faxeon</i> - (22 Aug 2024)</p>
+            </div>
+        </article>
+
+        <div class="end-of-internet">
+            <h3>Congratulations!</h3>
+            <p>You have reached the end of the internet!<p>
+            <br>
+            <p>This is the very last text, on the very last page at the very far edge of the internet.</p>
+            <p>There is nothing further to explore beyond this page now.</p>
+            <p>There is no further horizon to chase, no deeper unknown knowledge to unlock.</p>
+            <p>There is no more to discover, no hidden gem, no forgotten link.</p>
+            <p>You have seen every article, image, video, post, thread, discussion, meme there ever was.</p>
+            <p>And there is nothing beyond the horizon of this last, forgotten page.</p>
+            <br>
+            <p><i>You can now go outside.</i></p>
         </div>
     </main>
 </body>

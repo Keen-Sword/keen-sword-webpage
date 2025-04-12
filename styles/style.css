@@ -95,16 +95,8 @@ a.broken-link {
   }
   
 code {
-    background-color: var(--color-bg);
-    color: var(--white);
     font-family: Roboto-Mono, monospace;
     white-space: pre;
-    display: inline-block;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding-left: 16px;
-    padding-top: 8px;
-    padding-bottom: 8px;
 }
 
 li {
@@ -191,6 +183,58 @@ td {
 
 .home-page-quicklinks {
     list-style-type: disclosure-closed
+}
+
+.gallery {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    gap: 20px;
+}
+.gallery-wrapper {
+    position: relative;
+    overflow: hidden;
+    align-items: baseline;
+}
+.gallery-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.gallery-wrapper p {
+    margin: auto;
+    width: 50%;
+    text-wrap: nowrap;
+    text-wrap: pretty;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid var(--col-bg);
+    border-top: 4px solid var(--col-accent-1);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+.spinner-container {
+    padding: 50px;
+}
+.end-of-internet {
+    padding-top: 1000vh;
+    align-items: center;
+    text-align: center;
 }
 
 @media (orientation: landscape)  {
