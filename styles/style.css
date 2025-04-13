@@ -92,8 +92,8 @@ a:visited {
 a.broken-link {
     color: var(--red-dark);
     text-decoration: underline wavy var(--red-dark);
-  }
-  
+}
+
 code {
     font-family: Roboto-Mono, monospace;
     white-space: pre;
@@ -162,6 +162,20 @@ td {
     right: 0;
     margin-inline: auto;
     width: fit-content;
+    background-color: var(--col-bg-2);
+    width: 100vw;
+    border: 0px;
+    border-top: 8px;
+    border-style: groove;
+    border-color: var(--col-accent-1);
+    height: 10px;
+    transition: all 1s ease;
+    overflow: hidden;
+    z-index: 1000;
+}
+.navbar:hover {
+    opacity: 1;
+    height: auto;
 }
 .navbar-selector {
     display: flex;
@@ -171,6 +185,10 @@ td {
     margin: 12px;
     list-style-type: none;
     padding: 4px;
+}
+.navbar-selector-item-clickable:hover {
+    cursor: pointer;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
 .navbar-selected-post {
     font-weight: bold;
@@ -255,6 +273,10 @@ td {
     padding-top: 1000vh;
     align-items: center;
     text-align: center;
+}
+
+.blog-entry img {
+    width: 100%;
 }
 
 @media (orientation: landscape)  {

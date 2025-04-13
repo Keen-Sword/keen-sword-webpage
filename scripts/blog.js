@@ -2,6 +2,31 @@ var isBlogsKnown = false;
 var currentPostId = null;
 var highestPostId = null;
 
+function loadPost(id, firstLoad=false) {
+    if (id < 0 || id > highestPostId)
+        return;
+    if (id == currentPostId && !firstLoad)
+        return;
+
+    console.log(`Loading post #${id}..`)
+
+    fetch(`/blog/content/${id}.html`, { method: "GET" })
+        .then(res => {
+            return res.text();
+        })
+        .then(html => {
+            if (!html)
+                return;
+            
+            const adjustedHtml = '<div class="blog-entry">' + html + '<br><br><br></div>';
+            const mainElement = document.getElementById('content');
+            mainElement.innerHTML = adjustedHtml;
+        })
+    
+    currentPostId = id;
+    createNavbar();
+}
+
 async function getBlogPosts() {
     return await fetch("./blog/blog.json", { method: "GET" })
         .then(response => {
@@ -30,12 +55,12 @@ function createNavbar() {
 
     const addItem = (value, isCurrent = false) => {
         numbers.push(
-            `<li class="navbar-selector-item${isCurrent ? ' navbar-selected-post' : ''}"><p>${value}</p></li>`
+            `<li class="navbar-selector-item navbar-selector-item-clickable ${isCurrent ? 'navbar-selected-post' : ''}"><p onClick="loadPost(${value})">${value}</p></li>`
         );
     };
 
     let navHTML = '<nav class="navbar-selector">';
-    navHTML += `<li class="navbar-selector-item"><p>⟨</p></li>`;
+    navHTML += `<li class="navbar-selector-item  navbar-selector-item-clickable"><p onClick="loadPost(${currentPostId-1})">⟨</p></li>`
 
     addItem(firstPost, currentPostId === firstPost);
 
@@ -67,7 +92,7 @@ function createNavbar() {
         addItem(lastPost, currentPostId === lastPost);
 
     navHTML += numbers.join("");
-    navHTML += `<li class="navbar-selector-item"><p>⟩</p></li>`;
+    navHTML += `<li class="navbar-selector-item  navbar-selector-item-clickable"><p onClick="loadPost(${currentPostId+1})">⟩</p></li>`;
     navHTML += '</nav>';
 
     navbar.innerHTML = navHTML;
@@ -81,9 +106,10 @@ async function loadBlogInterface() {
 
     console.log(blogData);
     highestPostId = blogData.current;
-    currentPostId = Math.max(Math.min(Number(urlParams.get("p")) ?? blogData.current, highestPostId), 0);
+    currentPostId = Math.max(Math.min(Number(urlParams.get("p") ?? highestPostId), highestPostId), 0);
 
     createNavbar();
+    loadPost(currentPostId, true);
 }
 
 document.addEventListener("DOMContentLoaded", async function() {

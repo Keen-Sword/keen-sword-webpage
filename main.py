@@ -60,7 +60,10 @@ def handle_request(request: str) -> bytes:
         method, path, _ = lines[0].split()
         path = urllib.parse.unquote(path).lstrip('/').split('?')[0]
 
-        print(f"Serving: {' '.join(lines[0:3])}")
+        try:
+            print(f"Serving: {' '.join(lines[0:3])}")
+        except:
+            pass
 
         if method == "GET":
             return handle_get_requests(path)

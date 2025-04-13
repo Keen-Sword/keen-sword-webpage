@@ -43,6 +43,8 @@ function highlightBrokenLinks() {
     document.querySelectorAll("a").forEach(link => {
         if (!link.href)
             return;
+        if (link.classList.contains("topbar-selector-item-link"))
+            return;
 
         const linkUrl = new URL(link.href, location.href);
         if (linkUrl.origin !== location.origin) 
