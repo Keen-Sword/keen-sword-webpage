@@ -58,7 +58,7 @@ def handle_request(request: str) -> bytes:
     try:
         lines = request.split("\r\n")
         method, path, _ = lines[0].split()
-        path = urllib.parse.unquote(path).lstrip('/')
+        path = urllib.parse.unquote(path).lstrip('/').split('?')[0]
 
         print(f"Serving: {' '.join(lines[0:3])}")
 
