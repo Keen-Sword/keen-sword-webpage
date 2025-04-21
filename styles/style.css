@@ -93,6 +93,10 @@ a.broken-link {
     color: var(--red-dark);
     text-decoration: underline wavy var(--red-dark);
 }
+span.jp {
+    font-size: 0.83em;
+    font-family: Noto Sans JP;
+}
 
 code {
     font-family: Roboto-Mono, monospace;

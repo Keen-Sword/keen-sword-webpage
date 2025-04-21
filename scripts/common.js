@@ -73,6 +73,33 @@ function goHome() {
     window.location.assign("https://keen-sword.net");
 }
 
+function japaneseTextReadability() {
+    let fontDownloaded = false;
+
+    document.querySelectorAll('p').forEach(paragraph => {
+        const originalText = paragraph.textContent;
+        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF]+/g;
+        let modified = false;
+    
+        const newHTML = originalText.replace(japaneseRegex, match => {
+            modified = true;
+            return `<span class="jp">${match}</span>`;
+        });
+    
+        if (modified) {
+            paragraph.innerHTML = newHTML;
+
+            if (!fontDownloaded) {
+                const link = document.createElement('link');
+                link.href = 'https://fonts.googleapis.com/css?family=Noto+Sans+JP:400';
+                link.rel = 'stylesheet';
+                document.head.appendChild(link);
+                fontDownloaded = true;
+            }
+        }
+    });    
+}
+
 // Main
 function main() {
     console.log("Loading common HTML elements..");
@@ -89,6 +116,9 @@ function main() {
 
     console.log("Highlighting broken links..");
     highlightBrokenLinks();
+
+    console.log("Improving Hiragana and Katakana..")
+    japaneseTextReadability();
 }
 
 
