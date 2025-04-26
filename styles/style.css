@@ -240,10 +240,14 @@ td {
 }
 .gallery-wrapper img {
     display: block;
-    width: 100%;
+    max-width: 100%;
+    max-height: 1000px;
+    width: auto;
     height: auto;
+    margin: 0 auto;
     opacity: 0;
     transition: opacity 0.5s ease;
+    object-fit: contain;
 }
 .gallery-wrapper p {
     margin: auto;
