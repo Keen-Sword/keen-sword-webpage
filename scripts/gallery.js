@@ -26,28 +26,37 @@ function lazyLoadImages() {
     });
 }
 
-function addSearchBar() {
-    document.getElementById('search-input').addEventListener('input', function () {
-        const searchTerm = this.value.toLowerCase().trim();
-        const searchTerms = searchTerm.split(';').map(term => term.trim());
-        const galleryItems = document.querySelectorAll('.gallery-wrapper');
-    
-        galleryItems.forEach(item => {
-            const caption = item.querySelector('p').textContent.toLowerCase();
-            const alt = item.querySelector('img').alt.toLowerCase();
-            const keywords = item.querySelector('img').dataset.keywords.toLowerCase();
-            
-            const matchesSearchTerms = searchTerms.some(term => 
-                caption.includes(term) || alt.includes(term) || keywords.includes(term)
-            );
+function searchBarSearch() {
+    const searchBar = document.getElementById('search-input');
+    const searchTerm = searchBar.value.toLowerCase().trim();
+    const searchTerms = searchTerm.split(';').map(term => term.trim());
+    const galleryItems = document.querySelectorAll('.gallery-wrapper');
 
-            if (matchesSearchTerms) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+    galleryItems.forEach(item => {
+        const caption = item.querySelector('p').textContent.toLowerCase();
+        const alt = item.querySelector('img').alt.toLowerCase();
+        const keywords = item.querySelector('img').dataset.keywords.toLowerCase();
+        
+        const matchesSearchTerms = searchTerms.some(term => 
+            caption.includes(term) || alt.includes(term) || keywords.includes(term)
+        );
+
+        if (matchesSearchTerms) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
     });
+}
+
+function addSearchBar() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get("q") ?? "";
+    const searchBar = document.getElementById('search-input');
+
+    searchBar.value = searchQuery;
+    searchBar.addEventListener('input', searchBarSearch);
+    searchBarSearch();
 }
 
 
