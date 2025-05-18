@@ -45,11 +45,9 @@ function toggleSearchMode() {
 
 function createAndCopyLink() {
     const searchBar = document.getElementById('search-input');
-    const searchLogicButon = document.getElementById('search-logic');
-    
     const baseUrl = "https://keen-sword.net/gallery";
     const query = encodeURIComponent(searchBar.value.trim());
-    const logic = searchLogicButon.checked ? "false" : "true";
+    const logic = searchMode ? "true" : "false";
 
     const fullUrl = `${baseUrl}?v=1&q=${query}&e=${logic}`;
 
