@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+    <!-- Main and Nav -->
+    <url>
+        <loc>https://keen-sword.net/</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/blog</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/gallery</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/contact</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/nations</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Characters -->
+    <url>
+        <loc>https://keen-sword.net/characters/suzunami</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/lhasa</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/san_francisco</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/nations/continental_union</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/nations/state_of_ajisai</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/haguro</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/maya</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/kaga</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/izumo</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Nations -->
+    <url>
+        <loc>https://keen-sword.net/nations/not_china</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/nations/occiental_federation</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/nations/continental_union.html</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/characters/lhasa.html</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <!-- Other -->
+    <url>
+        <loc>https://keen-sword.net/embed/ocean_blue.html</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://keen-sword.net/embed/end_of_internet.html</loc>
+        <lastmod>2025-05-17T15:20:20+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+</urlset>

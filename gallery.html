@@ -20,23 +20,40 @@
     <div id="topbar" class="topbar shadow"></div>
     <main id="content" class="content">
         <article class="gallery">
-            <input type="text" id="search-input" placeholder="Search the gallery..."/>
+            <div class="gallery-searchbar-container">
+                <input class="gallery-searchbar" type="text" id="search-input" placeholder="Search the gallery..."/>
+                <button class="mode-change-button gallery-searchbar-sharebutton" id="search-logic" onclick="toggleSearchMode()">
+                    <span class="material-symbols-outlined" style="font-size: 1.2em; color: #fff;">schema</span>
+                </button>
+                <button class="mode-change-button gallery-searchbar-sharebutton" onclick="createAndCopyLink()">
+                    <span class="material-symbols-outlined" style="font-size: 1.2em; color: #fff;">share</span>
+                </button>
+            </div>
 
-            <p>This is a complete, chronologically ordered list of all official artwork released for Keen Sword. Each piece is accompanied by a caption and the name of the artist. You can use the search bar to easily navigate and find specific artworks. You can search for multiple keywords by seperating them with a <code>;</code> character.</p>
+            <p>This is a complete, chronologically ordered list of all official artwork released for Keen Sword. Each piece is accompanied by a caption and the name of the artist.</p>
+            <p> You can use the search bar to easily navigate and find specific artworks. You can search for multiple keywords by seperating them with a <code>;</code> or exclude keywords with a <code>-</code> in front of the keyword. You can also check the checkmark to toggle if it should require an image to have all keywords or if just one of them is enough. Once you are happy with a selection, you can also share a permanent link to it with the <i>Share</i> button.</p>
             
             <div class="gallery-wrapper">
                 <div class="spinner-container">
                     <div class="spinner"></div>
                 </div>
-                <img class="lazy" data-src="images/full_shipgirl_sazunami.png" data-keywords="Lhasa" alt="Suzunami Reveal Image">
-                <p>Shipgirl: Suzunami by <i>Fiiral</i> - (28 Apr 2024)</p>
+                <img class="lazy" data-src="images/ocean-blue.png" data-keywords="Maya, Beach, Background" alt="Maya at Beach">
+                <p>Ocean Blue by <i>Fiiral</i> - (18 May 2025)</p>
                 <hr>
             </div>
             <div class="gallery-wrapper">
                 <div class="spinner-container">
                     <div class="spinner"></div>
                 </div>
-                <img class="lazy" data-src="images/full_hanami_2025.png" data-keywords="Maya, Izumo, Kaga, Haguro, Collab, Kimono" alt="Hanami 2025 Collab">
+                <img class="lazy" data-src="images/full_shipgirl_sazunami.png" data-keywords="Lhasa" alt="Suzunami Reveal Image">
+                <p>Shipgirl: Suzunami by <i>Fiiral</i> - (28 Apr 2025)</p>
+                <hr>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <img class="lazy" data-src="images/full_hanami_2025.png" data-keywords="Maya, Izumo, Kaga, Haguro, Collab, Kimono, Background" alt="Hanami 2025 Collab">
                 <p>Hanami 2025 by <i>Faxeon and Fiiral</i> - (01 Apr 2025)</p>
                 <hr>
             </div>
@@ -53,7 +70,7 @@
                     <div class="spinner"></div>
                 </div>
                 <img class="lazy" data-src="images/full_shipgirl_lhasa.png" data-keywords="Lhasa" alt="Lhasa Reveal Image">
-                <p>Shipgirl: Lhasa by <i>Fiiral</i> - (04 Jan 2024)</p>
+                <p>Shipgirl: Lhasa by <i>Fiiral</i> - (04 Jan 2025)</p>
                 <hr>
             </div>
             <div class="gallery-wrapper">
@@ -88,20 +105,6 @@
                 <p>Shipgirl: Izumo by <i>Faxeon</i> - (22 Aug 2024)</p>
             </div>
         </article>
-
-        <div class="end-of-internet">
-            <h3>Congratulations!</h3>
-            <p>You have reached the end of the internet!<p>
-            <br>
-            <p>This is the very last text, on the very last page at the very far edge of the internet.</p>
-            <p>There is nothing further to explore beyond this page now.</p>
-            <p>There is no further horizon to chase, no deeper unknown knowledge to unlock.</p>
-            <p>There is no more to discover, no hidden gem, no forgotten link.</p>
-            <p>You have seen every article, image, video, post, thread, discussion, meme there ever was.</p>
-            <p>And there is nothing beyond the horizon of this last, forgotten page.</p>
-            <br>
-            <p><i>You can now go outside.</i></p>
-        </div>
     </main>
 </body>
 </html>
