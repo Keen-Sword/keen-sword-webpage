@@ -72,7 +72,54 @@ function goBack() {
 function goHome() {
     window.location.assign("https://keen-sword.net");
 }
+function findOrCreateLightbox() {
+    const oldLightbox = document.getElementById('lightbox');
+    if (oldLightbox) 
+        return oldLightbox;
 
+    const lightbox = document.createElement('div');
+    const lightboxImg = document.createElement('img');
+    lightbox.id = 'lightbox';
+    lightboxImg.id = 'lightbox-img';
+    lightbox.className = 'lightbox';
+
+    lightbox.appendChild(lightboxImg);
+    lightbox.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+    });
+
+    document.getElementById('content').appendChild(lightbox);
+    return lightbox;
+}
+function createLightbox() {
+    if (document.getElementById('lightbox')) 
+        return;
+
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'lightbox';
+
+    const img = document.createElement('img');
+    lightbox.appendChild(img);
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+      img.src = '';
+    });
+
+    document.getElementById('content').appendChild(lightbox);
+}
+function openLightbox(imageSrc) {
+    createLightbox();
+
+    const lightbox = document.getElementById('lightbox');
+    const img = lightbox.querySelector('img');
+
+    img.src = imageSrc;
+    lightbox.classList.add('show');
+}
+
+// Text Aids
 function japaneseTextReadability() {
     let fontDownloaded = false;
 
