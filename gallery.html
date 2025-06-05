@@ -33,82 +33,70 @@
             <p>This is a complete, chronologically ordered list of all official artwork released for Keen Sword. Each piece is accompanied by a caption and the name of the artist.</p>
             <p> You can use the search bar to easily navigate and find specific artworks. You can search for multiple keywords by seperating them with a <code>;</code> or exclude keywords with a <code>-</code> in front of the keyword. You can also check the checkmark to toggle if it should require an image to have all keywords or if just one of them is enough. Once you are happy with a selection, you can also share a permanent link to it with the <i>Share</i> button.</p>
             
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
+            <div class="lazy-image-wrapper" data-imgtype="carousel">
+                <div class="gallery-carousel-container" data-keywords="Haguro, Rigging, Railgun">
+                    <img class="gallery-carousel-image lazy lazy-spinnerless" data-src="images/full_haguro_rigging_0.png" alt="Haguro without her rigging" onclick="openLightbox(this.src)">
+                    <img class="gallery-carousel-image lazy lazy-spinnerless" data-src="images/full_haguro_rigging_1.png" alt="Haguro with her base rigging" onclick="openLightbox(this.src)">
+                    <img class="gallery-carousel-image lazy lazy-spinnerless" data-src="images/full_haguro_rigging_2.png" alt="Haguro with her advanced rigging" onclick="openLightbox(this.src)">
                 </div>
-                <img class="lazy" data-src="images/flag_cu.png" data-keywords="Flag" alt="flag of the Continental Union" onclick="openLightbox(this.src)">
+
+                <button class="gallery-carousel-nav left" onclick="changeSlide(this, -1)">&#10094;</button>
+                <button class="gallery-carousel-nav right" onclick="changeSlide(this, 1)">&#10095;</button>
+
+                <p>Rigging: Haguro by <i>Fiiral</i> - (04 Jun 2025)</p>
+                <hr>
+            </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
+                <img class="lazy" data-src="images/flag_aj.png" data-keywords="Flag" alt="Flag of Ajisai" onclick="openLightbox(this.src)">
+                <p>Flag of the Ajisai by <i>Faxeon</i> - (04 Jun 2025)</p>
+                <hr>
+            </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
+                <img class="lazy" data-src="images/flag_cu.png" data-keywords="Flag" alt="Flag of the Continental Union" onclick="openLightbox(this.src)">
                 <p>Flag of the Continental Union by <i>Faxeon</i> - (03 Jun 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
-                <img class="lazy" data-src="images/ocean-blue.png" data-keywords="Maya, Beach, Background" alt="Maya at Beach" onclick="openLightbox(this.src)">
+            <div class="lazy-image-wrapper" data-imgtype="single">
+                <img class="lazy" data-src="images/ocean_blue.png" data-keywords="Maya, Beach, Background" alt="Maya at Beach" onclick="openLightbox(this.src)">
                 <p>Ocean Blue by <i>Fiiral</i> - (18 May 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_shipgirl_sazunami.png" data-keywords="Lhasa" alt="Suzunami Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirl: Suzunami by <i>Fiiral</i> - (28 Apr 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_hanami_2025.png" data-keywords="Maya, Izumo, Kaga, Haguro, Collab, Kimono, Background" alt="Hanami 2025 Collab" onclick="openLightbox(this.src)">
                 <p>Hanami 2025 by <i>Faxeon and Fiiral</i> - (01 Apr 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_dontcallmefrisco.jpg" data-keywords="San Francisco" alt="San Francisco Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirl: San Francisco (Don't Call Me Frisco) by <i>Faxeon</i> - (26 Feb 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_shipgirl_lhasa.png" data-keywords="Lhasa" alt="Lhasa Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirl: Lhasa by <i>Fiiral</i> - (04 Jan 2025)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_shipgirl_kaga.png" data-keywords="Kaga" alt="Kaga Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirl: Kaga by <i>Faxeon</i> - (14 Oct 2024)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_shipgirl_maya_and_haguro.png" data-keywords="Maya, Haguro" alt="Maya and Haguro Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirls: Maya and Haguro by <i>Fiiral</i> - (14 Oct 2024)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_f35_snuggles.png" data-keywords="Izumo" alt="Izumo snuggling an F35" onclick="openLightbox(this.src)">
                 <p>F35 Snuggles by <i>Faxeon</i> - (22 Aug 2024)</p>
                 <hr>
             </div>
-            <div class="gallery-wrapper">
-                <div class="spinner-container">
-                    <div class="spinner"></div>
-                </div>
+            <div class="lazy-image-wrapper" data-imgtype="single">
                 <img class="lazy" data-src="images/full_shipgirl_izumo.png" data-keywords="Izumo, First" alt="Izumo Reveal Image" onclick="openLightbox(this.src)">
                 <p>Shipgirl: Izumo by <i>Faxeon</i> - (22 Aug 2024)</p>
             </div>

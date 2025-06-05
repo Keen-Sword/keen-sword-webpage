@@ -1,6 +1,6 @@
 // HTML Stuff
 function loadCommonHTML() {
-    var topbar = document.getElementById("topbar");
+    let topbar = document.getElementById("topbar");
 
     if (!topbar) {
         console.warn("Could not find the topbar!")
@@ -119,6 +119,51 @@ function openLightbox(imageSrc) {
     lightbox.classList.add('show');
 }
 
+// Lazy Load
+function lazyLoadImages() {
+    const images = document.querySelectorAll('img.lazy');
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting)
+                return;
+
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove("lazy");
+
+            img.onload = () => {
+                img.style.opacity = 1;
+
+                const spinnerContainer = img.closest('.lazy-image-wrapper').querySelector('.spinner-container');
+                if (spinnerContainer)
+                    spinnerContainer.remove();
+            };
+
+            observer.unobserve(img);
+        });
+    });
+
+    images.forEach(img => {
+        const wrapper = img.closest('.lazy-image-wrapper');
+        if (!wrapper) {
+            console.warn("Could not find a container for a lazy loading image!")
+            return
+        }
+
+        imageObserver.observe(img);
+        if (img.classList.contains("lazy-spinnerless"))
+            return
+
+        const spinnerContainer = document.createElement("div")
+        const spinner = document.createElement("div")
+        spinner.className = "spinner"
+        spinnerContainer.className = "spinner-container"
+        spinnerContainer.appendChild(spinner)
+        img.parentElement.insertBefore(spinnerContainer, img.parentElement.firstChild)
+    });
+}
+
 // Text Aids
 function japaneseTextReadability() {
     let fontDownloaded = false;
@@ -166,6 +211,9 @@ function main() {
 
     console.log("Improving Hiragana and Katakana..")
     japaneseTextReadability();
+
+    console.log("Adding lazy loading images..")
+    lazyLoadImages();
 }
 
 

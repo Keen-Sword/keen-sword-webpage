@@ -21,10 +21,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.shadow {
-    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2);
-}
-
 h1 {
     font-size: 2.25em;
     margin: 0px;
@@ -54,7 +50,6 @@ h1::after {
 h1:hover::after {
     transform: scaleX(1);
 }
-
 h2 {
     font-size: 1.75em;
     margin: 24px 8px 8px 0px;
@@ -142,6 +137,7 @@ video {
     border-bottom: 8px;
     border-style: ridge;
     border-color: var(--col-accent-1);
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2);
 }
 .topbar-selector {
     display: flex;
@@ -157,6 +153,7 @@ video {
 .topbar-selector-item:hover {
     box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.2) inset;
 }
+
 .navbar {
     position: fixed;
     bottom: 0;
@@ -195,17 +192,14 @@ video {
 .navbar-selected-post {
     font-weight: bold;
 }
+
 .footer {
     position: fixed; 
     bottom:0;
     right:1vw;
 }
 
-.avatar-image {
-    width: 95%;
-    padding: 2.5%;
-}
-.flag-image {
+.table-image {
     width: 95%;
     padding: 2.5%;
 }
@@ -220,6 +214,10 @@ video {
     border: none;
     background: none;
     cursor: pointer;
+}
+
+.blog-entry img {
+    width: 100%;
 }
 
 .home-page-quicklinks {
@@ -251,12 +249,40 @@ video {
     font-size: 1.2em;
     padding: 4px;
 }
-.gallery-wrapper {
+.gallery-carousel-container {
+    display: block ruby;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+.gallery-carousel-image {
+    min-width: 100%;
+    object-fit: contain;
+}
+.gallery-carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+.gallery-carousel-nav.left {
+    left: 10px;
+}
+.gallery-carousel-nav.right {
+    right: 10px;
+}
+
+.lazy-image-wrapper {
     position: relative;
     overflow: hidden;
     align-items: baseline;
 }
-.gallery-wrapper img {
+.lazy-image-wrapper img {
     display: block;
     max-width: 100%;
     max-height: 1000px;
@@ -267,10 +293,8 @@ video {
     transition: opacity 0.5s ease;
     object-fit: contain;
 }
-.gallery-wrapper p {
+.lazy-image-wrapper p {
     margin: auto;
-    width: 50%;
-    text-wrap: nowrap;
     text-align: center;
     text-wrap: pretty;
 }
@@ -297,10 +321,6 @@ video {
     padding: 50px;
 }
 
-.blog-entry img {
-    width: 100%;
-}
-
 .lightbox {
     display: none;
     position: fixed;
@@ -322,27 +342,20 @@ video {
 }
 
 .wiki-img-container {
-    display: grid; 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     padding: 0;
-    grid-template-columns: 275px 1fr; 
-    grid-template-rows: 275px 1fr;
+    margin: 0;
+    justify-content: flex-start;
 }
 .wiki-img-container li {
     list-style: none;
     width: 250px;
-    height: 250px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-.wiki-img-container p {
-    text-align: center;
-    align-self: center;
 }
 .wiki-img-thumb img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
+    max-width: 100%;
+    height: auto;
     cursor: pointer;
 }
 

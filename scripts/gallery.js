@@ -1,32 +1,5 @@
-let searchMode = true;
-
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img.lazy');
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting)
-                return;
-
-            const img = entry.target;
-            const wrapper = img.closest('.gallery-wrapper');
-
-            img.src = img.dataset.src;
-            img.onload = () => {
-                img.style.opacity = 1;
-                const spinner = wrapper.querySelector('.spinner');
-                if (spinner) spinner.remove();
-            };
-
-            img.classList.remove("lazy");
-            observer.unobserve(img);
-        });
-    });
-
-    images.forEach(img => {
-        imageObserver.observe(img);
-    });
-}
+var searchMode = true;
+const carouselState = new WeakMap();
 
 function toggleSearchMode() {
     const searchLogicButon = document.getElementById('search-logic');
@@ -60,7 +33,6 @@ function createAndCopyLink() {
         });
 }
 
-
 function hasMatch(content, positiveTerms) {
     if (positiveTerms.length === 0)
         return true;
@@ -79,13 +51,21 @@ function searchBarSearch() {
     const positiveTerms = terms.filter(term => !term.startsWith('-'));
     const negativeTerms = terms.filter(term => term.startsWith('-')).map(term => term.slice(1).trim());
 
-    const galleryItems = document.querySelectorAll('.gallery-wrapper');
+    const galleryItems = document.querySelectorAll('.lazy-image-wrapper');
 
     galleryItems.forEach(item => {
-        const caption = item.querySelector('p').textContent.toLowerCase();
-        const alt = item.querySelector('img').alt.toLowerCase();
-        const keywords = item.querySelector('img').dataset.keywords.toLowerCase();
-        const content = `${caption} ${alt} ${keywords}`;
+        let content = ""
+        if (item.dataset.imgtype == "carousel") {
+            const caption = item.querySelector('p').textContent.toLowerCase();
+            const keywords = item.querySelector('.gallery-carousel-container').dataset.keywords.toLowerCase();
+
+            content = `${caption} ${keywords}`;
+        } else if (item.dataset.imgtype == "single") {
+            const caption = item.querySelector('p').textContent.toLowerCase();
+            const alt = item.querySelector('img').alt.toLowerCase();
+            const keywords = item.querySelector('img').dataset.keywords.toLowerCase();
+            content = `${caption} ${alt} ${keywords}`;
+        }
 
         const matchesPositive = hasMatch(content, positiveTerms);
         const matchesNegative = negativeTerms.some(term => content.includes(term));
@@ -114,8 +94,23 @@ function addSearchBar() {
     searchBarSearch();
 }
 
+// Caruousel images
+function changeSlide(button, direction) {
+    const parent = button.parentElement;
+    const container = parent.querySelector('.gallery-carousel-container');
+    const slides = parent.querySelectorAll('.gallery-carousel-image');
+
+    if (!carouselState.has(container)) {
+        carouselState.set(container, 0);
+    }
+
+    let currentSlide = carouselState.get(container);
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+
+    carouselState.set(container, currentSlide);
+    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     addSearchBar();
-    lazyLoadImages();
 });
