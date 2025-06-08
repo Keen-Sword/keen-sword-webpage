@@ -1,3 +1,5 @@
+"use strict";
+
 // HTML Stuff
 function loadCommonHTML() {
     let topbar = document.getElementById("topbar");
@@ -5,17 +7,17 @@ function loadCommonHTML() {
     if (!topbar) {
         console.warn("Could not find the topbar!")
     } else {
-        topbar.setHTMLUnsafe( 
-        '<h1 onclick="goHome()">Project Keen Sword</h1>' +
-        '<nav class="topbar-selector">' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/">Home</a></li>' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/blog">Blog</a></li>' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/gallery">Gallery</a></li>' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/contact">Contact</a></li>' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/characters">Characters</a></li>' +
-        '    <li class="topbar-selector-item"><a class="topbar-selector-item-link" href="/nations">Nations</a></li>' +
-        '    <div><button class="mode-change-button" onclick="toggleDarkMode()"><span id="darkModeButton" class="material-symbols-outlined" style="font-size: 1.75em">dark_mode</span></button></div>' +
-        '</nav>');
+        topbar.setHTMLUnsafe(
+        "<h1 onclick='goHomeOrDropdown()'>Project Keen Sword</h1>" +
+        "<nav id='topbar-selector' class='topbar-selector'>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/'>Home</a></li>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/blog'>Blog</a></li>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/gallery'>Gallery</a></li>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/contact'>Contact</a></li>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/characters'>Characters</a></li>" +
+        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/nations'>Nations</a></li>" +
+        "    <div><button class='mode-change-button' onclick='toggleDarkMode()'><span id='darkModeButton' class='material-symbols-outlined' style='font-size: 1.75em'>dark_mode</span></button></div>" +
+        "</nav>");
     }
 }
 
@@ -24,16 +26,16 @@ function setDarkMode(enable) {
     const button = document.getElementById("darkModeButton");
 
     if (enable) {
-        document.documentElement.style.setProperty('--col-bg', '#1a1a1a');
-        document.documentElement.style.setProperty('--col-bg-2', '#222222');
-        document.documentElement.style.setProperty('--col-fg', '#e0e0e0');
-        localStorage.setItem('darkMode', 'enabled');
+        document.documentElement.style.setProperty("--col-bg", "#1a1a1a");
+        document.documentElement.style.setProperty("--col-bg-2", "#222222");
+        document.documentElement.style.setProperty("--col-fg", "#e0e0e0");
+        localStorage.setItem("darkMode", "enabled");
         button.innerHTML = "light_mode";
     } else {
-        document.documentElement.style.setProperty('--col-bg', '#f4f0e8');
-        document.documentElement.style.setProperty('--col-bg-2', '#dedad2');
-        document.documentElement.style.setProperty('--col-fg', '#111111');
-        localStorage.setItem('darkMode', 'disabled');
+        document.documentElement.style.setProperty("--col-bg", "#f4f0e8");
+        document.documentElement.style.setProperty("--col-bg-2", "#dedad2");
+        document.documentElement.style.setProperty("--col-fg", "#111111");
+        localStorage.setItem("darkMode", "disabled");
         button.innerHTML = "dark_mode";
     }
 }
@@ -47,12 +49,12 @@ function highlightBrokenLinks() {
             return;
 
         const linkUrl = new URL(link.href, location.href);
-        if (linkUrl.origin !== location.origin) 
+        if (linkUrl.origin !== location.origin)
             return;
-    
+
         fetch(link.href, { method: "HEAD" })
             .then(res => {
-                if (!res.ok) 
+                if (!res.ok)
                     link.classList.add("broken-link");
             })
             .catch(() => {
@@ -63,65 +65,76 @@ function highlightBrokenLinks() {
 
 // Button Stuff
 function toggleDarkMode() {
-    const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+    const isDarkMode = localStorage.getItem("darkMode") === "enabled";
     setDarkMode(!isDarkMode);
 }
 function goBack() {
     history.back();
 }
-function goHome() {
-    window.location.assign("https://keen-sword.net");
+function goHomeOrDropdown() {
+    const selector = document.getElementById("topbar-selector")
+
+    if (!selector)
+        window.location.assign("https://keen-sword.net");
+
+    const style = getComputedStyle(selector)
+    if (style.display === "flex")
+        window.location.assign("https://keen-sword.net");
+    else if (style.display === "none")
+        selector.style.display = "block";
+    else
+        selector.style.display = "none";
 }
 function findOrCreateLightbox() {
-    const oldLightbox = document.getElementById('lightbox');
-    if (oldLightbox) 
+    const oldLightbox = document.getElementById("lightbox");
+    if (oldLightbox)
         return oldLightbox;
 
-    const lightbox = document.createElement('div');
-    const lightboxImg = document.createElement('img');
-    lightbox.id = 'lightbox';
-    lightboxImg.id = 'lightbox-img';
-    lightbox.className = 'lightbox';
+    const lightbox = document.createElement("div");
+    const lightboxImg = document.createElement("img");
+    lightbox.id = "lightbox";
+    lightboxImg.id = "lightbox-img";
+    lightbox.className = "lightbox";
 
     lightbox.appendChild(lightboxImg);
-    lightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
+    lightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
     });
 
-    document.getElementById('content').appendChild(lightbox);
+    document.getElementById("content").appendChild(lightbox);
     return lightbox;
 }
 function createLightbox() {
-    if (document.getElementById('lightbox')) 
+    if (document.getElementById("lightbox"))
         return;
 
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    lightbox.className = 'lightbox';
+    const lightbox = document.createElement("div");
+    lightbox.id = "lightbox";
+    lightbox.className = "lightbox";
 
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     lightbox.appendChild(img);
 
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('show');
-      img.src = '';
+    lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("show");
+        img.src = "";
     });
 
-    document.getElementById('content').appendChild(lightbox);
+    document.getElementById("content").appendChild(lightbox);
 }
 function openLightbox(imageSrc) {
     createLightbox();
 
-    const lightbox = document.getElementById('lightbox');
-    const img = lightbox.querySelector('img');
+    const lightbox = document.getElementById("lightbox");
+    const img = lightbox.querySelector("img");
 
     img.src = imageSrc;
-    lightbox.classList.add('show');
+    lightbox.classList.add("show");
 }
 
 // Lazy Load
 function lazyLoadImages() {
-    const images = document.querySelectorAll('img.lazy');
+    const images = document.querySelectorAll("img.lazy");
 
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -135,7 +148,7 @@ function lazyLoadImages() {
             img.onload = () => {
                 img.style.opacity = 1;
 
-                const spinnerContainer = img.closest('.lazy-image-wrapper').querySelector('.spinner-container');
+                const spinnerContainer = img.closest(".lazy-image-wrapper").querySelector(".spinner-container");
                 if (spinnerContainer)
                     spinnerContainer.remove();
             };
@@ -145,7 +158,7 @@ function lazyLoadImages() {
     });
 
     images.forEach(img => {
-        const wrapper = img.closest('.lazy-image-wrapper');
+        const wrapper = img.closest(".lazy-image-wrapper");
         if (!wrapper) {
             console.warn("Could not find a container for a lazy loading image!")
             return
@@ -168,28 +181,28 @@ function lazyLoadImages() {
 function japaneseTextReadability() {
     let fontDownloaded = false;
 
-    document.querySelectorAll('p').forEach(paragraph => {
+    document.querySelectorAll("p").forEach(paragraph => {
         const originalText = paragraph.textContent;
         const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF]+/g;
         let modified = false;
-    
+
         const newHTML = originalText.replace(japaneseRegex, match => {
             modified = true;
             return `<span class="jp">${match}</span>`;
         });
-    
+
         if (modified) {
             paragraph.innerHTML = newHTML;
 
             if (!fontDownloaded) {
-                const link = document.createElement('link');
-                link.href = 'https://fonts.googleapis.com/css?family=Noto+Sans+JP:400';
-                link.rel = 'stylesheet';
+                const link = document.createElement("link");
+                link.href = "https://fonts.googleapis.com/css?family=Noto+Sans+JP:400";
+                link.rel = "stylesheet";
                 document.head.appendChild(link);
                 fontDownloaded = true;
             }
         }
-    });    
+    });
 }
 
 // Main
@@ -198,7 +211,7 @@ function main() {
     loadCommonHTML();
 
     console.log("Toggeling Dark Mode..");
-    if (localStorage.getItem('darkMode') === 'enabled') {
+    if (localStorage.getItem("darkMode") === "enabled") {
         document.body.style.transition = "none";
         setDarkMode(true);
         setTimeout(() => {

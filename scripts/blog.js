@@ -1,3 +1,4 @@
+"use strict";
 var isBlogsKnown = false;
 var currentPostId = null;
 var highestPostId = null;
@@ -5,7 +6,7 @@ var highestPostId = null;
 function loadPost(id, firstLoad=false) {
     if (id < 0 || id > highestPostId)
         return;
-    if (id == currentPostId && !firstLoad)
+    if (id === currentPostId && !firstLoad)
         return;
 
     console.log(`Loading post #${id}..`)
@@ -17,12 +18,12 @@ function loadPost(id, firstLoad=false) {
         .then(html => {
             if (!html)
                 return;
-            
-            const adjustedHtml = '<div class="blog-entry">' + html + '<br><br><br></div>';
-            const mainElement = document.getElementById('content');
+
+            const adjustedHtml = "<div class='blog-entry'>" + html + "<br><br><br></div>";
+            const mainElement = document.getElementById("content");
             mainElement.innerHTML = adjustedHtml;
         })
-    
+
     currentPostId = id;
     createNavbar();
 }
@@ -30,7 +31,7 @@ function loadPost(id, firstLoad=false) {
 async function getBlogPosts() {
     return await fetch("./blog/blog.json", { method: "GET" })
         .then(response => {
-            return response.json(); 
+            return response.json();
         })
         .then(json => {
             if (isBlogsKnown)
@@ -55,11 +56,11 @@ function createNavbar() {
 
     const addItem = (value, isCurrent = false) => {
         numbers.push(
-            `<li class="navbar-selector-item navbar-selector-item-clickable ${isCurrent ? 'navbar-selected-post' : ''}"><p onClick="loadPost(${value})">${value}</p></li>`
+            `<li class="navbar-selector-item navbar-selector-item-clickable ${isCurrent ? "navbar-selected-post" : ""}"><p onClick="loadPost(${value})">${value}</p></li>`
         );
     };
 
-    let navHTML = '<nav class="navbar-selector">';
+    let navHTML = "<nav class='navbar-selector'>";
     navHTML += `<li class="navbar-selector-item  navbar-selector-item-clickable"><p onClick="loadPost(${currentPostId-1})">⟨</p></li>`
 
     addItem(firstPost, currentPostId === firstPost);
@@ -93,7 +94,7 @@ function createNavbar() {
 
     navHTML += numbers.join("");
     navHTML += `<li class="navbar-selector-item  navbar-selector-item-clickable"><p onClick="loadPost(${currentPostId+1})">⟩</p></li>`;
-    navHTML += '</nav>';
+    navHTML += "</nav>";
 
     navbar.innerHTML = navHTML;
 }

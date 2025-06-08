@@ -127,9 +127,9 @@ video {
     text-align: center;
 }
 
-.topbar { 
-    background-color: var(--col-bg-2); 
-    padding: 16px; 
+.topbar {
+    background-color: var(--col-bg-2);
+    padding: 16px;
     position: sticky;
     display: grid;
     justify-content: space-evenly;
@@ -194,7 +194,7 @@ video {
 }
 
 .footer {
-    position: fixed; 
+    position: fixed;
     bottom:0;
     right:1vw;
 }
@@ -236,7 +236,7 @@ video {
     gap: 0.75em;
 }
 .gallery-searchbar {
-    flex: 1; 
+    flex: 1;
     padding: 0.5em;
     margin-right: 1em;
 }
@@ -250,7 +250,7 @@ video {
     padding: 4px;
 }
 .gallery-carousel-container {
-    display: block ruby;
+    display: inline-flex;
     transition: transform 0.5s ease;
     width: 100%;
 }
@@ -325,9 +325,9 @@ video {
     display: none;
     position: fixed;
     z-index: 255;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.8);
     justify-content: center;
@@ -365,9 +365,9 @@ video {
         width: 15vw;
     }
 
-    .topbar { 
-        background-color: var(--col-bg-2); 
-        padding: 16px; 
+    .topbar {
+        background-color: var(--col-bg-2);
+        padding: 16px;
         position: sticky;
         display: grid;
         justify-content: space-evenly;
@@ -383,7 +383,7 @@ video {
         padding: 4px;
     }
 
-    .content { 
+    .content {
         padding: 16px;
         padding-left: 15vw;
         padding-right: 15vw;
@@ -404,7 +404,7 @@ video {
     }
 
     .topbar-selector {
-        display: block;
+        display: none;
     }
     .topbar-selector-item {
         margin-right: 32px;
@@ -412,10 +412,10 @@ video {
         padding: 4px;
     }
 
-    .content { 
+    .content {
         padding: 16px;
         padding-left: 2vw;
-        padding-right: 5vw;
+        padding-right: 2vw;
     }
 
     .split-container > :first-child {

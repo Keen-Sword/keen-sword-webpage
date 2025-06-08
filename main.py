@@ -19,13 +19,13 @@ def serve_file(fp: str, error: bool=False) -> bytes | None:
     if os.path.isfile(fp):
         with open(fp, "rb") as f:
             body = f.read()
-        
+
         if error:
             return f"HTTP/1.1 404 Not Found\r\nContent-Type: {content_type}\r\n\r\n".encode() + body
         return f"HTTP/1.1 200 OK\r\nContent-Type: {content_type}\r\n\r\n".encode() + body
     else:
         return None
-    
+
 def handle_get_requests(path: str) -> bytes:
     file_path = os.path.join('./', path)
     if not os.path.splitext(path)[1]:
@@ -37,7 +37,7 @@ def handle_get_requests(path: str) -> bytes:
         return serve_file("index.html") # type: ignore
     if response == None:
         return serve_file("404.html", True) # type: ignore
-    return response 
+    return response
 
 def handle_head_requests(path: str) -> bytes:
     file_path = os.path.join('./', path)
@@ -74,7 +74,7 @@ def handle_request(request: str) -> bytes:
     except Exception as e:
         print(e)
         return f"HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain".encode()
-    
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as server_socket:
     server_socket.bind((HOST, PORT))
     server_socket.listen(1)
