@@ -225,7 +225,7 @@ function main(): void {
     console.log("Highlighting broken links..");
     highlightBrokenLinks();
 
-    console.log("Improving Hiragana and Katakana..")
+    console.log("Improving CJK readability..")
     japaneseTextReadability();
 
     console.log("Adding lazy loading images..")
