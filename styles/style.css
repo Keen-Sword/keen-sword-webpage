@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,-25&icon_names=dark_mode,light_mode,open_in_new,schema,share");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,-25&icon_names=dark_mode,graph_5,graph_6,light_mode,open_in_new,share");
 
 :root {
     --col-bg: #f4f0e8;
@@ -121,6 +121,17 @@ video {
     width: 100%;
 }
 
+button {
+    background-color: var(--col-accent-1);
+    border-radius: 4px;
+    border-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    padding: 4px;
+}
+
 .error-container {
     align-items: center;
     display: grid;
@@ -209,13 +220,6 @@ video {
     color: var(--col-fg);
 }
 
-.mode-change-button {
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
 .blog-entry img {
     width: 100%;
 }
@@ -239,15 +243,6 @@ video {
     flex: 1;
     padding: 0.5em;
     margin-right: 1em;
-}
-.gallery-searchbar-sharebutton {
-    background-color: var(--col-accent-1);
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    padding: 4px;
 }
 .gallery-carousel-container {
     display: inline-flex;
@@ -358,6 +353,18 @@ video {
     max-height: 250px;
     height: auto;
     cursor: pointer;
+}
+
+.settings-button-container {
+    display: flex;
+    align-items: center;
+}
+.setting-button-text {
+    margin-right: 20vw;
+}
+.settings-button {
+    position: absolute;
+    right: 10vw;
 }
 
 @media (orientation: landscape)  {

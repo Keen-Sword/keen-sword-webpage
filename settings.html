@@ -10,19 +10,29 @@
     <meta property="og:title" content="Project Keen Sword">
     <meta property="og:description" content="The official website of Project Keen Sword made by Faxeon and Fiiral.">
     <meta property="og:url" content="https://keen-sword.net/"/>
-    <title>Keen Sword - Chugonia</title>
+    <title>Keen Sword</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <script src="/scripts/client/buttonFunc.js"></script>
     <script type="module" src="/scripts/common.js"></script>
+    <script type="module" src="/scripts/settings.js"></script>
 </head>
 <body>
     <div id="topbar" class="topbar shadow"></div>
     <main id="content" class="content">
-        <div class="error-container">
-            <p>This Page is Work In Progress.</p>
-            <p><a onclick="goBack()">Go Back</a></p>
+        <p>Here you can change various settings of the page for your browser.</p>
+
+        <div id="settings-container">
+            <br>
+            <div class="settings-button-container">
+                <div class="setting-button-text">
+                    <h5>Dark Mode</h5>
+                    <p>If you want a bright or more cozy design, applies website wide.</p>
+                </div>
+                <div id="dark-mode-container" class="settings-button">
+
+                </div>
+            </div>
         </div>
     </main>
 </body>
-</html>

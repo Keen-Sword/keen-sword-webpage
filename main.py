@@ -3,6 +3,7 @@ import urllib.parse
 import os
 import mimetypes
 import subprocess
+import threading
 
 HOST = '127.0.0.1'
 PORT = 8080
@@ -85,6 +86,12 @@ def compile_typescript():
         print(f"TypeScript compilation failed because {e}")
         os._exit(1)
 
+def client_thread(client_socket: socket.socket):
+    with client_socket:
+        request = client_socket.recv(1024).decode()
+        response = handle_request(request)
+        client_socket.sendall(response)
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as server_socket:
     compile_typescript()
 
@@ -93,10 +100,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as server_socket:
 
     print(f"\nServing on http://{HOST}:{PORT}\n")
 
-    while RUNNING:
-        client_socket, _ = server_socket.accept()
-
-        with client_socket:
-            request = client_socket.recv(1024).decode()
-            response = handle_request(request)
-            client_socket.sendall(response)
+    try:
+        while True:
+            client_socket, _ = server_socket.accept()
+            thread = threading.Thread(target=client_thread, args=(client_socket,))
+            thread.daemon = True
+            thread.start()
+    except KeyboardInterrupt:
+        print("\nServer shutting down.")
+    finally:
+        server_socket.close()

@@ -13,21 +13,17 @@
     <title>Keen Sword - Gallery</title>
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
-    <script src="/scripts/common.js"></script>
-    <script src="/scripts/gallery.js"></script>
+    <script src="/scripts/client/buttonFunc.js"></script>
+    <script type="module" src="/scripts/common.js"></script>
+    <script type="module" src="/scripts/module/button.js"></script>
+    <script type="module" src="/scripts/gallery.js"></script>
 </head>
 <body>
     <div id="topbar" class="topbar shadow"></div>
     <main id="content" class="content">
         <article class="gallery">
-            <div class="gallery-searchbar-container">
+            <div class="gallery-searchbar-container" id="search-bar-container">
                 <input class="gallery-searchbar" type="text" id="search-input" placeholder="Search the gallery..."/>
-                <button class="mode-change-button gallery-searchbar-sharebutton" id="search-logic" onclick="toggleSearchMode()">
-                    <span class="material-symbols-outlined" style="font-size: 1.2em; color: #fff;">schema</span>
-                </button>
-                <button class="mode-change-button gallery-searchbar-sharebutton" onclick="createAndCopyLink()">
-                    <span class="material-symbols-outlined" style="font-size: 1.2em; color: #fff;">share</span>
-                </button>
             </div>
 
             <p>This is a complete, chronologically ordered list of all official artwork released for Keen Sword. Each piece is accompanied by a caption and the name of the artist.</p>
