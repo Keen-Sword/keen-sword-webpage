@@ -34,7 +34,7 @@ jobs:
       - name: Copy files to dist
         run: |
           mkdir -p dist
-          rsync -av --exclude dist/ ./ dist/
+          rsync -av --exclude dist/ --exclude node_modules/ ./ dist/
 
       - name: Remove unwanted files from dist
         run: |
