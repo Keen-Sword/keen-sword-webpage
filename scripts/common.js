@@ -181,9 +181,9 @@ function lazyLoadImages() {
 function japaneseTextReadability() {
     let fontDownloaded = false;
 
-    document.querySelectorAll("p").forEach(paragraph => {
+    document.querySelectorAll("p, li").forEach(paragraph => {
         const originalText = paragraph.textContent;
-        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF]+/g;
+        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+/g;
         let modified = false;
 
         const newHTML = originalText.replace(japaneseRegex, match => {
@@ -222,7 +222,7 @@ function main() {
     console.log("Highlighting broken links..");
     highlightBrokenLinks();
 
-    console.log("Improving Hiragana and Katakana..")
+    console.log("Improving CJK readability..")
     japaneseTextReadability();
 
     console.log("Adding lazy loading images..")
