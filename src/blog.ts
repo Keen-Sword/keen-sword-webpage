@@ -1,10 +1,9 @@
-"use strict";
 var isBlogsKnown = false;
-var currentPostId = null;
-var highestPostId = null;
+var currentPostId: number = null!;
+var highestPostId: number = null!;
 
-function loadPost(id, firstLoad=false) {
-    if (id < 0 || id > highestPostId)
+function loadPost(id: number, firstLoad=false): void {
+    if (id < 0 || id > (highestPostId ?? 0))
         return;
     if (id === currentPostId && !firstLoad)
         return;
@@ -21,15 +20,15 @@ function loadPost(id, firstLoad=false) {
 
             const adjustedHtml = "<div class='blog-entry'>" + html + "<br><br><br></div>";
             const mainElement = document.getElementById("content");
-            mainElement.innerHTML = adjustedHtml;
+            mainElement!.innerHTML = adjustedHtml;
         })
 
     currentPostId = id;
     createNavbar();
 }
 
-async function getBlogPosts() {
-    return await fetch("./blog/blog.json", { method: "GET" })
+async function getBlogPosts(): Promise<any> {
+    return await fetch("./data/blog.json", { method: "GET" })
         .then(response => {
             return response.json();
         })
@@ -42,7 +41,7 @@ async function getBlogPosts() {
         });
 }
 
-function createNavbar() {
+function createNavbar(): void {
     const navbar = document.getElementById("navbar");
 
     if (!navbar) {
@@ -54,7 +53,7 @@ function createNavbar() {
     const firstPost = 0;
     const lastPost = highestPostId;
 
-    const addItem = (value, isCurrent = false) => {
+    const addItem = (value: number, isCurrent = false) => {
         numbers.push(
             `<li class="navbar-selector-item navbar-selector-item-clickable ${isCurrent ? "navbar-selected-post" : ""}"><p onClick="loadPost(${value})">${value}</p></li>`
         );
@@ -99,7 +98,7 @@ function createNavbar() {
     navbar.innerHTML = navHTML;
 }
 
-async function loadBlogInterface() {
+async function loadBlogInterface(): Promise<void> {
     const urlParams = new URLSearchParams(window.location.search);
     const blogData = await getBlogPosts();
     if (!blogData)

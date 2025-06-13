@@ -2,6 +2,7 @@ import socket
 import urllib.parse
 import os
 import mimetypes
+import subprocess
 
 HOST = '127.0.0.1'
 PORT = 8080
@@ -75,7 +76,18 @@ def handle_request(request: str) -> bytes:
         print(e)
         return f"HTTP/1.1 500 Internal Server Error\r\nContent-Type: text/plain".encode()
 
+def compile_typescript():
+    try:
+        print("Compiling TypeScript...")
+        subprocess.run(['npx', 'tsc'], shell=True, check=True)
+        print("TypeScript compilation completed.\n")
+    except subprocess.CalledProcessError as e:
+        print(f"TypeScript compilation failed because {e}")
+        os._exit(1)
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0) as server_socket:
+    compile_typescript()
+
     server_socket.bind((HOST, PORT))
     server_socket.listen(1)
 

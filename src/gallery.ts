@@ -1,9 +1,8 @@
-"use strict";
 var searchMode = true;
 var carouselState = new WeakMap();
 
-function toggleSearchMode() {
-    const searchLogicButon = document.getElementById("search-logic");
+function toggleSearchMode(): void {
+    const searchLogicButon = document.getElementById("search-logic")!;
 
     if (searchMode) {
         searchMode = false;
@@ -17,8 +16,8 @@ function toggleSearchMode() {
     searchBarSearch();
 }
 
-function createAndCopyLink() {
-    const searchBar = document.getElementById("search-input");
+function createAndCopyLink(): void {
+    const searchBar = document.getElementById("search-input")! as HTMLInputElement;
     const baseUrl = "https://keen-sword.net/gallery";
     const query = encodeURIComponent(searchBar.value.trim());
     const logic = searchMode ? "true" : "false";
@@ -34,7 +33,7 @@ function createAndCopyLink() {
         });
 }
 
-function hasMatch(content, positiveTerms) {
+function hasMatch(content: string, positiveTerms: string[]): boolean {
     if (positiveTerms.length === 0)
         return true;
 
@@ -45,8 +44,8 @@ function hasMatch(content, positiveTerms) {
         return positiveTerms.every(term => content.includes(term));
 }
 
-function searchBarSearch() {
-    const searchBar = document.getElementById("search-input");
+function searchBarSearch(): void {
+    const searchBar = document.getElementById("search-input") as HTMLInputElement;
     const searchTerm = searchBar.value.toLowerCase().trim();
 
     const terms = searchTerm.split(";").map(term => term.trim()).filter(term => term.length > 0);
@@ -55,17 +54,21 @@ function searchBarSearch() {
 
     const galleryItems = document.querySelectorAll(".lazy-image-wrapper");
 
-    galleryItems.forEach(item => {
+    galleryItems.forEach(rawItem => {
         let content = ""
+        let item = rawItem as HTMLDivElement;
+
         if (item.dataset.imgtype === "carousel") {
-            const caption = item.querySelector("p").textContent.toLowerCase();
-            const keywords = item.querySelector(".gallery-carousel-container").dataset.keywords.toLowerCase();
+            const caption = item.querySelector("p")!.textContent?.toLowerCase();
+            const container = item.querySelector(".gallery-carousel-container") as HTMLDivElement;
+            const keywords = container.dataset.keywords?.toLowerCase();
 
             content = `${caption} ${keywords}`;
         } else if (item.dataset.imgtype === "single") {
-            const caption = item.querySelector("p").textContent.toLowerCase();
-            const alt = item.querySelector("img").alt.toLowerCase();
-            const keywords = item.querySelector("img").dataset.keywords.toLowerCase();
+            const caption = item.querySelector("p")!.textContent?.toLowerCase();
+            const alt = item.querySelector("img")!.alt.toLowerCase();
+            const keywords = item.querySelector("img")!.dataset.keywords?.toLowerCase();
+
             content = `${caption} ${alt} ${keywords}`;
         }
 
@@ -79,12 +82,12 @@ function searchBarSearch() {
     });
 }
 
-function addSearchBar() {
+function addSearchBar(): void {
     const urlParams = new URLSearchParams(window.location.search);
     const searchVersion = urlParams.get("v") ?? "";
     const searchQuery = urlParams.get("q") ?? "";
     const searchType = urlParams.get("e") ?? "";
-    const searchBar = document.getElementById("search-input");
+    const searchBar = document.getElementById("search-input") as HTMLInputElement;
 
     if (searchType.toLowerCase() === "false")
         toggleSearchMode();
@@ -95,10 +98,10 @@ function addSearchBar() {
 }
 
 // Caruousel images
-function changeSlide(button, direction) {
-    const parent = button.parentElement;
-    const container = parent.querySelector(".gallery-carousel-container");
-    const slides = parent.querySelectorAll(".gallery-carousel-image");
+function changeSlide(button: HTMLElement, direction: number) {
+    const parent = button.parentElement!;
+    const container = parent.querySelector(".gallery-carousel-container")! as HTMLDivElement;
+    const slides = parent.querySelectorAll(".gallery-carousel-image")!;
 
     if (!carouselState.has(container))
         carouselState.set(container, 0);

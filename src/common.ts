@@ -1,7 +1,5 @@
-"use strict";
-
 // HTML Stuff
-function loadCommonHTML() {
+function loadCommonHTML(): void {
     let topbar = document.getElementById("topbar");
 
     if (!topbar) {
@@ -22,8 +20,11 @@ function loadCommonHTML() {
 }
 
 // Dark Mode
-function setDarkMode(enable) {
+function setDarkMode(enable: boolean): void {
     const button = document.getElementById("darkModeButton");
+
+    if (!button)
+        return
 
     if (enable) {
         document.documentElement.style.setProperty("--col-bg", "#1a1a1a");
@@ -41,7 +42,7 @@ function setDarkMode(enable) {
 }
 
 // Broken Links
-function highlightBrokenLinks() {
+function highlightBrokenLinks(): void {
     document.querySelectorAll("a").forEach(link => {
         if (!link.href)
             return;
@@ -64,18 +65,20 @@ function highlightBrokenLinks() {
 }
 
 // Button Stuff
-function toggleDarkMode() {
+function toggleDarkMode(): void {
     const isDarkMode = localStorage.getItem("darkMode") === "enabled";
     setDarkMode(!isDarkMode);
 }
-function goBack() {
+function goBack(): void {
     history.back();
 }
-function goHomeOrDropdown() {
+function goHomeOrDropdown(): void {
     const selector = document.getElementById("topbar-selector")
 
-    if (!selector)
+    if (!selector) {
         window.location.assign("https://keen-sword.net");
+        return;
+    }
 
     const style = getComputedStyle(selector)
     if (style.display === "flex")
@@ -85,7 +88,7 @@ function goHomeOrDropdown() {
     else
         selector.style.display = "none";
 }
-function findOrCreateLightbox() {
+function findOrCreateLightbox(): HTMLElement {
     const oldLightbox = document.getElementById("lightbox");
     if (oldLightbox)
         return oldLightbox;
@@ -101,10 +104,10 @@ function findOrCreateLightbox() {
         lightbox.style.display = "none";
     });
 
-    document.getElementById("content").appendChild(lightbox);
+    document.getElementById("content")!.appendChild(lightbox);
     return lightbox;
 }
-function createLightbox() {
+function createLightbox(): void {
     if (document.getElementById("lightbox"))
         return;
 
@@ -120,20 +123,20 @@ function createLightbox() {
         img.src = "";
     });
 
-    document.getElementById("content").appendChild(lightbox);
+    document.getElementById("content")!.appendChild(lightbox);
 }
-function openLightbox(imageSrc) {
+function openLightbox(imageSrc: string): void {
     createLightbox();
 
-    const lightbox = document.getElementById("lightbox");
-    const img = lightbox.querySelector("img");
+    const lightbox = document.getElementById("lightbox")!;
+    const img = lightbox.querySelector("img")!;
 
     img.src = imageSrc;
     lightbox.classList.add("show");
 }
 
 // Lazy Load
-function lazyLoadImages() {
+function lazyLoadImages(): void {
     const images = document.querySelectorAll("img.lazy");
 
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -141,14 +144,14 @@ function lazyLoadImages() {
             if (!entry.isIntersecting)
                 return;
 
-            const img = entry.target;
-            img.src = img.dataset.src;
+            const img = entry.target as HTMLImageElement;
+            img.src = img.dataset.src ?? "";
             img.classList.remove("lazy");
 
             img.onload = () => {
-                img.style.opacity = 1;
+                img.style.opacity = "1";
 
-                const spinnerContainer = img.closest(".lazy-image-wrapper").querySelector(".spinner-container");
+                const spinnerContainer = img.closest(".lazy-image-wrapper")!.querySelector(".spinner-container");
                 if (spinnerContainer)
                     spinnerContainer.remove();
             };
@@ -173,17 +176,17 @@ function lazyLoadImages() {
         spinner.className = "spinner"
         spinnerContainer.className = "spinner-container"
         spinnerContainer.appendChild(spinner)
-        img.parentElement.insertBefore(spinnerContainer, img.parentElement.firstChild)
+        img.parentElement?.insertBefore(spinnerContainer, img.parentElement.firstChild)
     });
 }
 
 // Text Aids
-function japaneseTextReadability() {
+function japaneseTextReadability(): void {
     let fontDownloaded = false;
 
-    document.querySelectorAll("p").forEach(paragraph => {
-        const originalText = paragraph.textContent;
-        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF]+/g;
+    document.querySelectorAll("p, li").forEach(paragraph => {
+        const originalText = paragraph.textContent ?? "";
+        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+/g;
         let modified = false;
 
         const newHTML = originalText.replace(japaneseRegex, match => {
@@ -206,7 +209,7 @@ function japaneseTextReadability() {
 }
 
 // Main
-function main() {
+function main(): void {
     console.log("Loading common HTML elements..");
     loadCommonHTML();
 
