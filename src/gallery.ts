@@ -1,17 +1,13 @@
+import { ButtonManager, ButtonState } from "./module/button.js";
+
 var searchMode = true;
-var carouselState = new WeakMap();
 
+// Search bar
 function toggleSearchMode(): void {
-    const searchLogicButon = document.getElementById("search-logic")!;
-
-    if (searchMode) {
+    if (searchMode)
         searchMode = false;
-        searchLogicButon.style.backgroundColor = "var(--col-bg-2)";
-    }
-    else {
+    else
         searchMode = true;
-        searchLogicButon.style.backgroundColor = "var(--col-accent-1)";
-    }
 
     searchBarSearch();
 }
@@ -89,30 +85,35 @@ function addSearchBar(): void {
     const searchType = urlParams.get("e") ?? "";
     const searchBar = document.getElementById("search-input") as HTMLInputElement;
 
-    if (searchType.toLowerCase() === "false")
+    if (searchType.toLowerCase() === "false") {
         toggleSearchMode();
+        ButtonManager.call(1);  // hacky >:3
+    }
 
     searchBar.value = searchQuery;
     searchBar.addEventListener("input", searchBarSearch);
     searchBarSearch();
 }
 
-// Caruousel images
-function changeSlide(button: HTMLElement, direction: number) {
-    const parent = button.parentElement!;
-    const container = parent.querySelector(".gallery-carousel-container")! as HTMLDivElement;
-    const slides = parent.querySelectorAll(".gallery-carousel-image")!;
+function addButtons(): void {
+    const container = document.getElementById("search-bar-container");
 
-    if (!carouselState.has(container))
-        carouselState.set(container, 0);
+    if (!container)
+        return;
 
-    let currentSlide = carouselState.get(container);
-    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    const shareButton = document.createElement("button");
+    const searchModeButton = document.createElement("button");
 
-    carouselState.set(container, currentSlide);
-    container.style.transform = `translateX(-${currentSlide * 100}%)`;
+    new ButtonManager(container, shareButton, [
+        new ButtonState("share", true, createAndCopyLink)
+    ]);
+    new ButtonManager(container, searchModeButton, [
+        new ButtonState("graph_6", true, toggleSearchMode),
+        new ButtonState("graph_5", true, toggleSearchMode)
+    ]);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    addButtons();
     addSearchBar();
 });

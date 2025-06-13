@@ -1,43 +1,46 @@
+import { setDarkMode } from "./module/dark_mode.js";
+
 // HTML Stuff
 function loadCommonHTML(): void {
-    let topbar = document.getElementById("topbar");
+    const topbar = document.getElementById("topbar");
 
     if (!topbar) {
         console.warn("Could not find the topbar!")
     } else {
-        topbar.setHTMLUnsafe(
-        "<h1 onclick='goHomeOrDropdown()'>Project Keen Sword</h1>" +
-        "<nav id='topbar-selector' class='topbar-selector'>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/'>Home</a></li>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/blog'>Blog</a></li>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/gallery'>Gallery</a></li>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/contact'>Contact</a></li>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/characters'>Characters</a></li>" +
-        "    <li class='topbar-selector-item'><a class='topbar-selector-item-link' href='/nations'>Nations</a></li>" +
-        "    <div><button class='mode-change-button' onclick='toggleDarkMode()'><span id='darkModeButton' class='material-symbols-outlined' style='font-size: 1.75em'>dark_mode</span></button></div>" +
-        "</nav>");
-    }
-}
+        const heading = document.createElement('h1');
+        heading.textContent = 'Project Keen Sword';
+        heading.onclick = goHomeOrDropdown;
 
-// Dark Mode
-function setDarkMode(enable: boolean): void {
-    const button = document.getElementById("darkModeButton");
+        const nav = document.createElement('nav');
+        nav.id = 'topbar-selector';
+        nav.className = 'topbar-selector';
 
-    if (!button)
-        return
+        const links = [
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: 'Gallery', path: '/gallery' },
+            { name: 'Contact', path: '/contact' },
+            { name: 'Characters', path: '/characters' },
+            { name: 'Nations', path: '/nations' },
+            { name: 'Settings', path: '/settings' }
+        ];
 
-    if (enable) {
-        document.documentElement.style.setProperty("--col-bg", "#1a1a1a");
-        document.documentElement.style.setProperty("--col-bg-2", "#222222");
-        document.documentElement.style.setProperty("--col-fg", "#e0e0e0");
-        localStorage.setItem("darkMode", "enabled");
-        button.innerHTML = "light_mode";
-    } else {
-        document.documentElement.style.setProperty("--col-bg", "#f4f0e8");
-        document.documentElement.style.setProperty("--col-bg-2", "#dedad2");
-        document.documentElement.style.setProperty("--col-fg", "#111111");
-        localStorage.setItem("darkMode", "disabled");
-        button.innerHTML = "dark_mode";
+        links.forEach(link => {
+        const li = document.createElement('li');
+        li.className = 'topbar-selector-item';
+
+        const a = document.createElement('a');
+        a.className = 'topbar-selector-item-link';
+        a.href = link.path;
+        a.textContent = link.name;
+
+        li.appendChild(a);
+            nav.appendChild(li);
+        });
+
+        topbar.innerHTML = '';
+        topbar.appendChild(heading);
+        topbar.appendChild(nav);
     }
 }
 
@@ -62,77 +65,6 @@ function highlightBrokenLinks(): void {
                 link.classList.add("broken-link");
             });
     });
-}
-
-// Button Stuff
-function toggleDarkMode(): void {
-    const isDarkMode = localStorage.getItem("darkMode") === "enabled";
-    setDarkMode(!isDarkMode);
-}
-function goBack(): void {
-    history.back();
-}
-function goHomeOrDropdown(): void {
-    const selector = document.getElementById("topbar-selector")
-
-    if (!selector) {
-        window.location.assign("https://keen-sword.net");
-        return;
-    }
-
-    const style = getComputedStyle(selector)
-    if (style.display === "flex")
-        window.location.assign("https://keen-sword.net");
-    else if (style.display === "none")
-        selector.style.display = "block";
-    else
-        selector.style.display = "none";
-}
-function findOrCreateLightbox(): HTMLElement {
-    const oldLightbox = document.getElementById("lightbox");
-    if (oldLightbox)
-        return oldLightbox;
-
-    const lightbox = document.createElement("div");
-    const lightboxImg = document.createElement("img");
-    lightbox.id = "lightbox";
-    lightboxImg.id = "lightbox-img";
-    lightbox.className = "lightbox";
-
-    lightbox.appendChild(lightboxImg);
-    lightbox.addEventListener("click", () => {
-        lightbox.style.display = "none";
-    });
-
-    document.getElementById("content")!.appendChild(lightbox);
-    return lightbox;
-}
-function createLightbox(): void {
-    if (document.getElementById("lightbox"))
-        return;
-
-    const lightbox = document.createElement("div");
-    lightbox.id = "lightbox";
-    lightbox.className = "lightbox";
-
-    const img = document.createElement("img");
-    lightbox.appendChild(img);
-
-    lightbox.addEventListener("click", () => {
-        lightbox.classList.remove("show");
-        img.src = "";
-    });
-
-    document.getElementById("content")!.appendChild(lightbox);
-}
-function openLightbox(imageSrc: string): void {
-    createLightbox();
-
-    const lightbox = document.getElementById("lightbox")!;
-    const img = lightbox.querySelector("img")!;
-
-    img.src = imageSrc;
-    lightbox.classList.add("show");
 }
 
 // Lazy Load
@@ -231,7 +163,6 @@ function main(): void {
     console.log("Adding lazy loading images..")
     lazyLoadImages();
 }
-
 
 document.addEventListener("DOMContentLoaded", function() {
     main();
