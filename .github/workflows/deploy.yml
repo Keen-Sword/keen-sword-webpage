@@ -34,7 +34,7 @@ jobs:
       - name: Copy files to dist
         run: |
           mkdir -p dist
-          cp -r src/* dist/
+          cp -r scripts/* dist/
 
       - name: Remove files from dist
         run: |
