@@ -34,9 +34,9 @@ jobs:
       - name: Copy files to dist
         run: |
           mkdir -p dist
-          cp -r scripts/* dist/
+          cp -r ./* dist/
 
-      - name: Remove files from dist
+      - name: Remove unwanted files from dist
         run: |
           rm -f dist/CNAME
           rm -f dist/main.py
