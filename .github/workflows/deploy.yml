@@ -34,7 +34,7 @@ jobs:
       - name: Copy files to dist
         run: |
           mkdir -p dist
-          cp -r ./* dist/
+          rsync -av --exclude dist/ ./ dist/
 
       - name: Remove unwanted files from dist
         run: |
