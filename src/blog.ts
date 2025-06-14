@@ -104,7 +104,7 @@ async function loadBlogInterface(): Promise<void> {
     if (!blogData)
         return;
 
-    console.log(blogData);
+    console.debug(blogData);
     highestPostId = blogData.current;
     currentPostId = Math.max(Math.min(Number(urlParams.get("p") ?? highestPostId), highestPostId), 0);
 

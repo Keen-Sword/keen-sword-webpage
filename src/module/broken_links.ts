@@ -1,4 +1,7 @@
 export function highlightBrokenLinks(): void {
+    if (localStorage.getItem("linkChecking") === "disabled")
+        return;
+
     document.querySelectorAll("a").forEach(link => {
         if (!link.href)
             return;

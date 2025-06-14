@@ -1,5 +1,6 @@
 import { setDarkMode } from "./module/dark_mode.js";
 import { highlightBrokenLinks } from "./module/broken_links.js";
+import { japaneseTextProcessing } from "./module/furigana.js";
 
 // HTML Stuff
 function loadCommonHTML(): void {
@@ -90,40 +91,7 @@ function lazyLoadImages(): void {
     });
 }
 
-// Text Aids
-function japaneseTextReadability(): void {
-    let fontDownloaded = false;
-
-    document.querySelectorAll("p, li").forEach(paragraph => {
-        const originalText = paragraph.textContent ?? "";
-        const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+/g;
-        let modified = false;
-
-        const newHTML = originalText.replace(japaneseRegex, match => {
-            modified = true;
-            return `<span class="jp">${match}</span>`;
-        });
-
-        if (modified) {
-            paragraph.innerHTML = newHTML;
-
-            if (!fontDownloaded) {
-                const link = document.createElement("link");
-                link.href = "https://fonts.googleapis.com/css?family=Noto+Sans+JP:400";
-                link.rel = "stylesheet";
-                document.head.appendChild(link);
-                fontDownloaded = true;
-            }
-        }
-    });
-}
-
-// Main
-function main(): void {
-    console.log("Loading common HTML elements..");
-    loadCommonHTML();
-
-    console.log("Toggeling Dark Mode..");
+function darkModeOnLoad() {
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.style.transition = "none";
         setDarkMode(true);
@@ -131,19 +99,12 @@ function main(): void {
             document.body.style.transition = "background-color 0.4s ease, color 0.4s ease";
         }, 50);
     }
-
-    console.log("Highlighting broken links..");
-    if (localStorage.getItem("linkChecking") === "enabled") {
-        highlightBrokenLinks();
-    }
-
-    console.log("Improving CJK readability..")
-    japaneseTextReadability();
-
-    console.log("Adding lazy loading images..")
-    lazyLoadImages();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    main();
+document.addEventListener("DOMContentLoaded", async function() {
+    darkModeOnLoad();
+    highlightBrokenLinks();
+    loadCommonHTML();
+    lazyLoadImages();
+    await japaneseTextProcessing();
 });

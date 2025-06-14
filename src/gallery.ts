@@ -33,7 +33,6 @@ function hasMatch(content: string, positiveTerms: string[]): boolean {
     if (positiveTerms.length === 0)
         return true;
 
-    console.log(searchMode)
     if (searchMode)
         return positiveTerms.some(term => content.includes(term));
     else
@@ -111,7 +110,7 @@ function addButtons(): void {
     ]);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     addButtons();
     addSearchBar();
 });
