@@ -70,7 +70,7 @@ def handle_request(request: str) -> bytes:
         if method == "GET":
             return handle_get_requests(path)
         if method == "HEAD":
-            return handle_get_requests(path)
+            return handle_head_requests(path)
         else:
             return f"HTTP/1.1 405 Method Not Allowed\r\nContent-Type: text/plain".encode()
     except Exception as e:

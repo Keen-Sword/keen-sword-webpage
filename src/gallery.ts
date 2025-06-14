@@ -85,10 +85,8 @@ function addSearchBar(): void {
     const searchType = urlParams.get("e") ?? "";
     const searchBar = document.getElementById("search-input") as HTMLInputElement;
 
-    if (searchType.toLowerCase() === "false") {
+    if (searchType.toLowerCase() === "false")
         toggleSearchMode();
-        ButtonManager.call(1);  // hacky >:3
-    }
 
     searchBar.value = searchQuery;
     searchBar.addEventListener("input", searchBarSearch);
@@ -105,11 +103,11 @@ function addButtons(): void {
     const searchModeButton = document.createElement("button");
 
     new ButtonManager(container, shareButton, [
-        new ButtonState("share", true, createAndCopyLink)
+        new ButtonState("share", "Share", true, createAndCopyLink)
     ]);
     new ButtonManager(container, searchModeButton, [
-        new ButtonState("graph_6", true, toggleSearchMode),
-        new ButtonState("graph_5", true, toggleSearchMode)
+        new ButtonState("graph_6", "Exclusive Search", true, toggleSearchMode),
+        new ButtonState("graph_5", "Inclusive Search", true, toggleSearchMode)
     ]);
 }
 

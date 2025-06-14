@@ -1,10 +1,12 @@
 export class ButtonState {
     public icon: string;
+    public title: string;
     public isBackgroundEnabled: boolean;
     private func: Function;
 
-    constructor(icon: string, isBackgroundEnabled: boolean, func: Function) {
+    constructor(icon: string, title: string, isBackgroundEnabled: boolean, func: Function) {
         this.icon = icon;
+        this.title = title;
         this.isBackgroundEnabled = isBackgroundEnabled;
         this.func = func;
     }
@@ -38,28 +40,40 @@ export class ButtonManager {
         const id = ButtonManager.instances.push(this)
 
         element.onclick = (ev) => { ButtonManager.call(id-1) };
+        element.title = states[0].title;
         parent.appendChild(element);
     }
 
-    public static call(id: number): void {
-        const instance = ButtonManager.instances[id];
-        if (!instance)
-            return
+    private _call(): void {
+        this.currentState.call();
+        this.setState(this.currentStateIndex + 1)
+    }
 
-        instance.currentState.call();
+    public setState(state: number|null) {
+        if (state === null)
+            return;
 
-        instance.currentStateIndex = (instance.currentStateIndex + 1) % instance.states.length;
-        instance.currentState = instance.states[instance.currentStateIndex];
+        state = state % this.states.length;
+        this.currentStateIndex = state;
+        this.currentState = this.states[state];
+        this.element.title = this.currentState.title;
 
-        if (instance.element.firstChild)
-            instance.element.firstChild.textContent = instance.currentState.icon;
+        if (this.element.firstChild)
+            this.element.firstChild.textContent = this.currentState.icon;
         else
             console.warn("Could not find SpanElement for Button. Did you set it up correctly?")
 
-        if (instance.currentState.isBackgroundEnabled) {
-            instance.element.style.backgroundColor = "var(--col-accent-1)";
+        if (this.currentState.isBackgroundEnabled) {
+            this.element.style.backgroundColor = "var(--col-accent-1)";
         } else {
-            instance.element.style.backgroundColor = "var(--col-bg-2)";
+            this.element.style.backgroundColor = "var(--col-bg-2)";
         }
+    }
+
+    public static call(instanceId: number): void {
+        const instance = ButtonManager.instances[instanceId];
+        if (!instance)
+            return;
+        instance._call();
     }
 }
