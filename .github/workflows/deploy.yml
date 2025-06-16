@@ -31,11 +31,6 @@ jobs:
       - name: Compile TypeScript
         run: npx tsc
 
-      - name: Minify JavaScript
-        run: |
-          npm install -g uglify-js
-          find scripts -name '*.js' -type f -exec uglifyjs {} -o {} \;
-
       - name: Copy files to dist
         run: |
           mkdir -p dist
@@ -48,6 +43,11 @@ jobs:
           rm -f dist/package-lock.json
           rm -f dist/package.json
           rm -f dist/tsconfig.json
+
+      - name: Minifing JavaScript
+        run: |
+          npm install -g uglify-js
+          find dist -name '*.js' -type f -exec uglifyjs {} -o {} \;
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
