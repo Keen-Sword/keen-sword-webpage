@@ -31,6 +31,11 @@ jobs:
       - name: Compile TypeScript
         run: npx tsc
 
+      - name: Minify JavaScript
+        run: |
+          npm install -g uglify-js
+          find scripts -name '*.js' -type f -exec uglifyjs {} -o {} \;
+
       - name: Copy files to dist
         run: |
           mkdir -p dist
