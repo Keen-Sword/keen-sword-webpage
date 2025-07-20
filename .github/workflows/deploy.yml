@@ -39,7 +39,7 @@ jobs:
       - name: Copy files to dist
         run: |
           mkdir -p dist
-          rsync -av --exclude dist/ --exclude node_modules/ ./ dist/
+          rsync -av --exclude dist/ --exclude node_modules/ --exclude src/ ./ dist/
 
       - name: Remove unwanted files from dist
         run: |
@@ -48,6 +48,7 @@ jobs:
           rm -f dist/package-lock.json
           rm -f dist/package.json
           rm -f dist/tsconfig.json
+          rm -f dist/.gitignore
 
       - name: Minifing JavaScript
         run: |
