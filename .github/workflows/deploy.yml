@@ -31,6 +31,11 @@ jobs:
       - name: Compile TypeScript
         run: npx tsc
 
+      - name: Move public folder to root
+        run: |
+          cp -r public/* .
+          rm -rf public
+
       - name: Copy files to dist
         run: |
           mkdir -p dist

@@ -29,20 +29,20 @@ def serve_file(fp: str, error: bool=False) -> bytes | None:
         return None
 
 def handle_get_requests(path: str) -> bytes:
-    file_path = os.path.join('./', path)
+    file_path = os.path.join('./public/', path)
     if not os.path.splitext(path)[1]:
         file_path += ".html"
 
     response = serve_file(file_path)
 
     if path == "":
-        return serve_file("index.html") # type: ignore
+        return serve_file("public/index.html") # type: ignore
     if response == None:
-        return serve_file("404.html", True) # type: ignore
+        return serve_file("public/404.html", True) # type: ignore
     return response
 
 def handle_head_requests(path: str) -> bytes:
-    file_path = os.path.join('./', path)
+    file_path = os.path.join('./public/', path)
 
     if not os.path.splitext(path)[1]:
         file_path += ".html"

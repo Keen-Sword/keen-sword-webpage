@@ -3,7 +3,7 @@
         "target": "ES6",
         "module": "ES6",
         "lib": ["es2017", "dom"],
-        "outDir": "scripts",
+        "outDir": "public/scripts",
         "rootDir": "src",
         "removeComments": true,
         "strict": true,

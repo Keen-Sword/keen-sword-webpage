@@ -1,6 +1,5 @@
 import { setDarkMode } from "./module/dark_mode.js";
 import { highlightBrokenLinks } from "./module/broken_links.js";
-import { japaneseTextProcessing } from "./module/furigana.js";
 
 // HTML Stuff
 function loadCommonHTML(): void {
@@ -19,9 +18,9 @@ function loadCommonHTML(): void {
 
         const links = [
             { name: 'Home', path: '/' },
-            { name: 'Blog', path: '/blog' },
+            //{ name: 'Blog', path: '/blog' },
             { name: 'Gallery', path: '/gallery' },
-            { name: 'Contact', path: '/contact' },
+            // { name: 'Contact', path: '/contact' },
             { name: 'Characters', path: '/characters' },
             { name: 'Nations', path: '/nations' },
             { name: 'Settings', path: '/settings' }
@@ -106,5 +105,4 @@ document.addEventListener("DOMContentLoaded", async function() {
     highlightBrokenLinks();
     loadCommonHTML();
     lazyLoadImages();
-    await japaneseTextProcessing();
 });
