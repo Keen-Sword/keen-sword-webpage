@@ -52,7 +52,7 @@ jobs:
       - name: Minifing JavaScript
         run: |
           npm install -g uglify-js
-          find dist -name '*.js' -type f -exec uglifyjs {} -o {} \;
+          find dist -name '*.js' -type f -exec uglifyjs {} -c -m -o {} \;
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
