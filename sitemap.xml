@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <!-- Main and Nav -->
     <url>
         <loc>https://keen-sword.net/</loc>
@@ -12,22 +14,56 @@
         <priority>1.00</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/full_group_image1.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_maya_rigging_0.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_maya_rigging_1.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_maya_rigging_2.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_haguro_rigging_0.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_haguro_rigging_1.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_haguro_rigging_2.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/flag_aj.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/flag_cu.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/ocean_blue.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_sazunami.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_hanami_2025.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_dontcallmefrisco.jpg</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_lhasa.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_kaga.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_maya_and_haguro.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_f35_snuggles.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_izumo.png</image:loc>
         </image:image>
     </url>
@@ -49,6 +85,8 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/suzunami_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_sazunami.png</image:loc>
         </image:image>
     </url>
@@ -58,6 +96,8 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/lhasa_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_lhasa.png</image:loc>
         </image:image>
     </url>
@@ -75,8 +115,14 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/haguro_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_maya_and_haguro.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_haguro_rigging_1.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_haguro_rigging_2.png</image:loc>
         </image:image>
     </url>
@@ -86,10 +132,18 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/maya_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_maya_and_haguro.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_maya_rigging_1.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_maya_rigging_2.png</image:loc>
-            <image:log>https://keen-sword.net/images/ocean_blue.png</image:loc>
+        </image:image>
+        <image:image>
+            <image:loc>https://keen-sword.net/images/ocean_blue.png</image:loc>
         </image:image>
     </url>
     <url>
@@ -98,6 +152,8 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/kaga_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_kaga.png</image:loc>
         </image:image>
     </url>
@@ -107,7 +163,11 @@
         <priority>0.80</priority>
         <image:image>
             <image:loc>https://keen-sword.net/images/izumo_avatar.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_shipgirl_izumo.png</image:loc>
+        </image:image>
+        <image:image>
             <image:loc>https://keen-sword.net/images/full_f35_snuggles.png</image:loc>
         </image:image>
     </url>
