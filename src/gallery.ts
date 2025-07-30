@@ -110,7 +110,16 @@ function addButtons(): void {
     ]);
 }
 
+function deleteNoScript() {
+    console.log("Deleting Noscript");
+    const noScriptElements = document.querySelectorAll("noscript")
+    noScriptElements.forEach((element) => {
+        element.remove();
+    })
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
+    deleteNoScript();
     addButtons();
     addSearchBar();
 });
