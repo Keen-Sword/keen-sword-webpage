@@ -17,6 +17,7 @@ function createLightbox(): void {
 
     const downloadBtn = document.createElement("button");
     downloadBtn.textContent = "🡻";
+    downloadBtn.style.width = "46px";
     downloadBtn.addEventListener("click", (e) => {
         e.stopPropagation(); // prevent closing the lightbox
 
@@ -28,6 +29,8 @@ function createLightbox(): void {
 
     const shareBtn = document.createElement("button");
     shareBtn.textContent = "➦";
+    shareBtn.style.width = "46px";
+    shareBtn.style.marginTop = "10px";
     shareBtn.addEventListener("click", async (e) => {
         e.stopPropagation(); // prevent closing the lightbox
 
