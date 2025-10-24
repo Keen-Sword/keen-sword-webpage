@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "jsmin": "^1.0.1",
+        "npx": "^10.2.2",
+        "uglify-js": "^3.19.3"
+    }
+}
