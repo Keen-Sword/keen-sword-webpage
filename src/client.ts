@@ -16,8 +16,11 @@ function createLightbox(): void {
     buttonContainer.className = "lightbox-buttons";
 
     const downloadBtn = document.createElement("button");
-    downloadBtn.textContent = "🡻";
+    const downloadIcon = document.createElement("span");
+    downloadIcon.textContent = "download";
+    downloadIcon.className = "material-symbols-outlined";
     downloadBtn.style.width = "46px";
+    downloadBtn.appendChild(downloadIcon);
     downloadBtn.addEventListener("click", (e) => {
         e.stopPropagation(); // prevent closing the lightbox
 
@@ -28,9 +31,12 @@ function createLightbox(): void {
     });
 
     const shareBtn = document.createElement("button");
-    shareBtn.textContent = "➦";
+    const shareIcon = document.createElement("span");
+    shareIcon.textContent = "share";
+    shareIcon.className = "material-symbols-outlined"
     shareBtn.style.width = "46px";
     shareBtn.style.marginTop = "10px";
+    shareBtn.appendChild(shareIcon);
     shareBtn.addEventListener("click", async (e) => {
         e.stopPropagation(); // prevent closing the lightbox
 
